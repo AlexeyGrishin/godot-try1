@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Helicopter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Temp1.gd" type="Script" id=2]
 
 [sub_resource type="Gradient" id=1]
 
@@ -13,9 +14,16 @@ flags = 4
 gradient = SubResource( 1 )
 width = 2048
 
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 110.454
+
 [node name="Main" type="Node" index="0"]
 
 [node name="Background" type="Node2D" parent="." index="0"]
+
+editor/display_folded = true
 
 [node name="Sprite" type="Sprite" parent="Background" index="0"]
 
@@ -26,8 +34,34 @@ texture = SubResource( 2 )
 centered = false
 _sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="AnimationPlayer" parent="." index="1" instance=ExtResource( 1 )]
+[node name="Helicopter" parent="." index="1" instance=ExtResource( 1 )]
 
 position = Vector2( 283.947, 185.155 )
+speed = 100
+
+[node name="Area2D" type="Area2D" parent="." index="2"]
+
+position = Vector2( 570, 220 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 258
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+modulate = Color( 0, 1, 0, 1 )
+show_behind_parent = true
+shape = SubResource( 3 )
+_sections_unfolded = [ "Visibility" ]
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_Area2D_area_entered"]
+
+[connection signal="area_exited" from="Area2D" to="Area2D" method="_on_Area2D_area_exited"]
 
 

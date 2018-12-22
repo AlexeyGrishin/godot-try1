@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://scripts/Helicopter.cs" type="Script" id=1]
+[ext_resource path="res://scripts/Helicopter.gd" type="Script" id=1]
 [ext_resource path="res://sprites/helicopter.sprites/helicopter1.tres" type="Texture" id=2]
 [ext_resource path="res://sprites/helicopter.sprites/helicopter6.tres" type="Texture" id=3]
 [ext_resource path="res://sprites/helicopter.sprites/helicopter7.tres" type="Texture" id=4]
@@ -48,11 +48,11 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 3 ) ]
 }
 
-[node name="Helicopter" type="Node2D" index="0"]
+[node name="Helicopter" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-Speed = 100
+speed = 50
 
 [node name="Area2D" type="Area2D" parent="." index="0"]
 
@@ -62,13 +62,16 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision_mask = 3
 audio_bus_override = false
 audio_bus_name = "Master"
-_sections_unfolded = [ "Transform", "Z Index" ]
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 
+visible = false
 shape = SubResource( 1 )
+_sections_unfolded = [ "Visibility" ]
 
 [node name="HelicopterBody" type="AnimatedSprite" parent="Area2D" index="1"]
 
@@ -80,7 +83,7 @@ offset = Vector2( 0, 0.256972 )
 
 frames = SubResource( 3 )
 animation = "default"
-frame = 1
+frame = 2
 playing = true
 offset = Vector2( -3, 0.256972 )
 _sections_unfolded = [ "Transform" ]
