@@ -1,0 +1,14 @@
+[remap]
+
+importer="snkkid.SpriteSheetImporter"
+type="Resource"
+path="res://.import/helicopter.json-abefadd3b7dfd60a37b1a8a1a473b772.res"
+
+[deps]
+
+source_file="res://sprites/helicopter.json"
+dest_files=[ "res://.import/helicopter.json-abefadd3b7dfd60a37b1a8a1a473b772.res" ]
+
+[params]
+
+Import_As_Atlas=true

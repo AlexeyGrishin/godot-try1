@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Helicopter.tscn" type="PackedScene" id=1]
+
+[sub_resource type="Gradient" id=1]
+
+offsets = PoolRealArray( 0, 0.578406, 0.81491, 1 )
+colors = PoolColorArray( 0.00289818, 0.451098, 0.539062, 1, 0.129451, 0.727127, 0.803713, 1, 0.155331, 0.783575, 0.857834, 1, 0.19903, 0.878889, 0.949219, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+
+flags = 4
+gradient = SubResource( 1 )
+width = 2048
+
+[node name="Main" type="Node" index="0"]
+
+[node name="Background" type="Node2D" parent="." index="0"]
+
+[node name="Sprite" type="Sprite" parent="Background" index="0"]
+
+position = Vector2( 797.707, 8.63836e-06 )
+rotation = 1.5708
+scale = Vector2( 0.417827, 798.091 )
+texture = SubResource( 2 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="AnimationPlayer" parent="." index="1" instance=ExtResource( 1 )]
+
+position = Vector2( 283.947, 185.155 )
+
+
