@@ -1,0 +1,14 @@
+[remap]
+
+importer="snkkid.SpriteSheetImporter"
+type="Resource"
+path="res://.import/crates.json-cc212fb477e046172334e6cb3f24c299.res"
+
+[deps]
+
+source_file="res://sprites/crates.json"
+dest_files=[ "res://.import/crates.json-cc212fb477e046172334e6cb3f24c299.res" ]
+
+[params]
+
+Import_As_Atlas=true

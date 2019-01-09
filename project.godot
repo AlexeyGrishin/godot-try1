@@ -14,9 +14,17 @@ config/name="godot3"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+global="*res://scripts/global.gd"
+util="*res://scripts/util.gd"
+colors="*res://scripts/colors.gd"
+AutoResize="*res://scripts/AutoResize.gd"
+
 [display]
 
 window/size/width=800
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
@@ -40,11 +48,29 @@ ui_down=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
  ]
+debug_1=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":49,"unicode":0,"echo":false,"script":null)
+ ]
+rotate_left=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":123,"unicode":0,"echo":false,"script":null)
+ ]
+rotate_right=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":125,"unicode":0,"echo":false,"script":null)
+ ]
 
 [layer_names]
 
 2d_physics/layer_1="helicopter"
 2d_physics/layer_2="obstacles"
+2d_physics/layer_3="breakable"
+2d_physics/layer_4="bullet"
+2d_physics/layer_5="floor"
+2d_physics/layer_6="vision"
+
+[locale]
+
+locale_filter=[ 0, [  ] ]
+
+[physics]
+
+2d/cell_size=64
 
 [rendering]
 

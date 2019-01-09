@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://objects/BaseEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/Zenitka.gd" type="Script" id=2]
+[ext_resource path="res://sprites/environment.sprites/environment2.tres" type="Texture" id=3]
+[ext_resource path="res://sprites/environment.sprites/environment4.tres" type="Texture" id=4]
+[ext_resource path="res://sprites/environment.sprites/environment24.tres" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "fire",
+"speed": 16.0
+} ]
+
+[node name="Zenitka" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+
+frames = SubResource( 1 )
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
+
+

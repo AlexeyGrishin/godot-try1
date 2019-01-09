@@ -1,12 +1,21 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Helicopter.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/Temp1.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Main.gd" type="Script" id=1]
+[ext_resource path="res://bg.png" type="Texture" id=2]
+[ext_resource path="res://Polar.tres" type="Material" id=3]
+[ext_resource path="res://polar1.png" type="Texture" id=4]
+[ext_resource path="res://polar2.png" type="Texture" id=5]
+[ext_resource path="res://Helicopter.tscn" type="PackedScene" id=6]
+[ext_resource path="res://RealFloor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://floors/Floor2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://floors/Floor3.tscn" type="PackedScene" id=9]
+[ext_resource path="res://floors/Floor4.tscn" type="PackedScene" id=10]
+[ext_resource path="res://UI.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Gradient" id=1]
 
 offsets = PoolRealArray( 0, 0.578406, 0.81491, 1 )
-colors = PoolColorArray( 0.00289818, 0.451098, 0.539062, 1, 0.129451, 0.727127, 0.803713, 1, 0.155331, 0.783575, 0.857834, 1, 0.19903, 0.878889, 0.949219, 1 )
+colors = PoolColorArray( 0.0257266, 0.118509, 0.136719, 1, 0.129451, 0.727127, 0.803713, 1, 0.155331, 0.783575, 0.857834, 1, 0.19903, 0.878889, 0.949219, 1 )
 
 [sub_resource type="GradientTexture" id=2]
 
@@ -14,54 +23,175 @@ flags = 4
 gradient = SubResource( 1 )
 width = 2048
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-radius = 110.454
+extents = Vector2( 10, 1350 )
 
-[node name="Main" type="Node" index="0"]
+[node name="Main" type="Node2D" index="0"]
 
-[node name="Background" type="Node2D" parent="." index="0"]
+script = ExtResource( 1 )
+
+[node name="Camera" type="Camera2D" parent="." index="0" groups=[
+"camera",
+]]
+
+anchor_mode = 0
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = 0
+limit_top = -2000
+limit_right = 800
+limit_bottom = 595
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 1.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = false
+editor_draw_limits = true
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Editor", "Limit", "Smoothing", "Transform" ]
+
+[node name="Background" type="Node2D" parent="." index="1"]
 
 editor/display_folded = true
+z_index = -2
+z_as_relative = false
+_sections_unfolded = [ "Z Index" ]
 
 [node name="Sprite" type="Sprite" parent="Background" index="0"]
 
-position = Vector2( 797.707, 8.63836e-06 )
+visible = false
+position = Vector2( 800, -2000 )
 rotation = 1.5708
-scale = Vector2( 0.417827, 798.091 )
+scale = Vector2( 1.26669, 798.091 )
 texture = SubResource( 2 )
 centered = false
 _sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="Helicopter" parent="." index="1" instance=ExtResource( 1 )]
+[node name="Sky" type="Sprite" parent="Background" index="1"]
 
-position = Vector2( 283.947, 185.155 )
-speed = 100
+self_modulate = Color( 0.671647, 0.680196, 0.874353, 1 )
+position = Vector2( 0, -1200 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 6266, 2000 )
+_sections_unfolded = [ "Offset", "Region", "Transform", "Visibility" ]
 
-[node name="Area2D" type="Area2D" parent="." index="2"]
+[node name="Polars" type="Node2D" parent="Background" index="2"]
+
+[node name="Polar1" type="Sprite" parent="Background/Polars" index="0"]
+
+material = ExtResource( 3 )
+position = Vector2( 1100, -920 )
+scale = Vector2( 1, 0.593284 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Material", "Transform" ]
+
+[node name="Polar2" type="Sprite" parent="Background/Polars" index="1"]
+
+self_modulate = Color( 1, 1, 1, 0.72502 )
+material = ExtResource( 3 )
+position = Vector2( 0, -630 )
+scale = Vector2( 1, 1.9757 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Material", "Visibility" ]
+
+[node name="Helicopter" parent="." index="2" instance=ExtResource( 6 )]
+
+position = Vector2( 230, 420 )
+speed = 300
+firing = false
+
+[node name="Walls" type="Node" parent="." index="3"]
+
+editor/display_folded = true
+
+[node name="Area2D" type="StaticBody2D" parent="Walls" index="0"]
 
 position = Vector2( 570, 220 )
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
+input_pickable = false
 collision_layer = 258
-audio_bus_override = false
-audio_bus_name = "Master"
-script = ExtResource( 2 )
-_sections_unfolded = [ "Collision" ]
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Pickable" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area2D" index="0"]
 
 modulate = Color( 0, 1, 0, 1 )
 show_behind_parent = true
+position = Vector2( -160, -920 )
 shape = SubResource( 3 )
 _sections_unfolded = [ "Visibility" ]
 
-[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_Area2D_area_entered"]
+[node name="Area2D2" type="StaticBody2D" parent="Walls" index="1"]
 
-[connection signal="area_exited" from="Area2D" to="Area2D" method="_on_Area2D_area_exited"]
+position = Vector2( 570, 220 )
+input_pickable = false
+collision_layer = 258
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Pickable" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Area2D2" index="0"]
+
+modulate = Color( 0, 1, 0, 1 )
+show_behind_parent = true
+position = Vector2( -580, -920 )
+shape = SubResource( 3 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Building" type="Node" parent="." index="4"]
+
+[node name="Floor" parent="Building" index="0" instance=ExtResource( 7 )]
+
+position = Vector2( 600, 560 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Floor2" parent="Building" index="1" instance=ExtResource( 7 )]
+
+position = Vector2( 600, 480 )
+_sections_unfolded = [ "Transform" ]
+floor_scene_path = ExtResource( 8 )
+
+[node name="Floor3" parent="Building" index="2" instance=ExtResource( 7 )]
+
+position = Vector2( 600, 360 )
+_sections_unfolded = [ "Transform" ]
+floor_scene_path = ExtResource( 9 )
+
+[node name="Floor4" parent="Building" index="3" instance=ExtResource( 7 )]
+
+position = Vector2( 600, 280 )
+_sections_unfolded = [ "Transform" ]
+floor_scene_path = ExtResource( 10 )
+
+[node name="UI" parent="." index="5" instance=ExtResource( 11 )]
+
+[node name="CrateTimer" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 10.0
+one_shot = false
+autostart = true
+
+[node name="Crates" type="Node2D" parent="." index="7"]
+
+[connection signal="timeout" from="CrateTimer" to="." method="_on_CrateTimer_timeout"]
 
 

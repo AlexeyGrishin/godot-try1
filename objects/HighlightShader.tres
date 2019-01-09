@@ -1,0 +1,38 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform vec2  outLineSize  = vec2(0.002, 0.02);
+uniform vec4  outLineColor = vec4(1.0, 0.4, 0.0, 1.0);
+uniform bool  highlighted = false;
+
+void fragment()
+{
+    vec4 tcol = texture(TEXTURE, UV);
+	if (highlighted && tcol.a == 0.0)
+    {
+        if (texture(TEXTURE, UV + vec2(0.0,          outLineSize.y)).a  != 0.0 ||
+            texture(TEXTURE, UV + vec2(0.0,         -outLineSize.y)).a  != 0.0 ||
+            texture(TEXTURE, UV + vec2(outLineSize.x,  0.0)).a          != 0.0 ||
+            texture(TEXTURE, UV + vec2(-outLineSize.x, 0.0)).a          != 0.0 ||
+            texture(TEXTURE, UV + vec2(-outLineSize.x, outLineSize.y)).a  != 0.0 ||
+            texture(TEXTURE, UV + vec2(-outLineSize.x, -outLineSize.y)).a != 0.0 ||
+            texture(TEXTURE, UV + vec2(outLineSize.x,  outLineSize.y)).a  != 0.0 ||
+            texture(TEXTURE, UV + vec2(outLineSize.x,  -outLineSize.y)).a != 0.0) 
+            tcol = outLineColor;
+    }	
+    COLOR = tcol;
+}"
+
+[resource]
+
+render_priority = 0
+shader = SubResource( 1 )
+shader_param/outLineSize = null
+shader_param/outLineColor = null
+shader_param/highlighted = false
+_sections_unfolded = [ "shader_param" ]
+

@@ -1,0 +1,124 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/RealFloor.gd" type="Script" id=1]
+[ext_resource path="res://floors/Floor1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/back_windows.gd" type="Script" id=3]
+[ext_resource path="res://scripts/floor_circle.gd" type="Script" id=4]
+[ext_resource path="res://scripts/front_windows.gd" type="Script" id=5]
+[ext_resource path="res://scripts/Floor.gd" type="Script" id=6]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+render_priority = 0
+blend_mode = 0
+light_mode = 0
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 150, 1 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 4, 50 )
+
+[node name="Floor" type="Node2D"]
+
+script = ExtResource( 1 )
+floor_scene_path = ExtResource( 2 )
+
+[node name="back_windows" type="Node2D" parent="." index="0"]
+
+z_index = -1
+z_as_relative = false
+script = ExtResource( 3 )
+_sections_unfolded = [ "Z Index" ]
+floor_id = "1"
+
+[node name="floor_circle" type="Node2D" parent="." index="1"]
+
+material = SubResource( 1 )
+script = ExtResource( 4 )
+_sections_unfolded = [ "Material", "Pause" ]
+radius = 200
+floor_id = 1
+
+[node name="items_container" type="YSort" parent="." index="2"]
+
+sort_enabled = true
+
+[node name="front_windows" type="Node2D" parent="." index="3"]
+
+z_index = 2
+z_as_relative = false
+script = ExtResource( 5 )
+_sections_unfolded = [ "Z Index" ]
+floor_id = "1"
+
+[node name="floor_height" type="Node2D" parent="." index="4"]
+
+[node name="colliders" type="Node2D" parent="." index="5"]
+
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="Floor2" type="StaticBody2D" parent="colliders" index="0"]
+
+input_pickable = false
+collision_layer = 16
+collision_mask = 8
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 6 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="colliders/Floor2" index="0"]
+
+shape = SubResource( 2 )
+one_way_collision = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="LeftWindow" type="Area2D" parent="colliders" index="1"]
+
+position = Vector2( -200, 0 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4
+collision_mask = 8
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="colliders/LeftWindow" index="0"]
+
+shape = SubResource( 3 )
+
+[node name="RightWindow" type="Area2D" parent="colliders" index="2"]
+
+position = Vector2( 200, 0 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4
+collision_mask = 8
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="colliders/RightWindow" index="0"]
+
+shape = SubResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[connection signal="body_entered" from="colliders/LeftWindow" to="." method="_on_LeftWindow_body_entered"]
+
+[connection signal="body_entered" from="colliders/RightWindow" to="." method="_on_RightWindow_body_entered"]
+
+

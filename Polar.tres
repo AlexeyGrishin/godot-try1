@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+
+code = "shader_type canvas_item;
+
+void fragment() {
+	vec4 tcol = texture(TEXTURE, UV);
+	float time = TIME * 0.2;
+	vec4 outc = vec4(0,0,0,tcol.a);
+	outc.r = cos(time + tcol.r)*0.2 + tcol.r*0.8;
+	outc.b = sin(time + tcol.r)*0.3 + tcol.b*0.7;
+	outc.g = cos(time*2.0 + tcol.b)*0.5 + 0.2;
+	outc.a = tcol.a * ceil((tcol.b*0.8+0.2*cos(time*0.5)) * 5.0)/5.0 * ceil(tcol.r * 10.0)/10.0;
+	COLOR = outc;
+}"
+
+[resource]
+
+render_priority = 0
+shader = SubResource( 1 )
+

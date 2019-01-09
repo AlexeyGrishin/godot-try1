@@ -1,0 +1,14 @@
+[remap]
+
+importer="snkkid.SpriteSheetImporter"
+type="Resource"
+path="res://.import/bullets.json-4518f5a046bc25141b64699ada4aad5a.res"
+
+[deps]
+
+source_file="res://sprites/bullets.json"
+dest_files=[ "res://.import/bullets.json-4518f5a046bc25141b64699ada4aad5a.res" ]
+
+[params]
+
+Import_As_Atlas=true

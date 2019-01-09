@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://objects/BaseEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/MortarGunner.gd" type="Script" id=2]
+[ext_resource path="res://sprites/environment.sprites/environment5.tres" type="Texture" id=3]
+[ext_resource path="res://sprites/environment.sprites/environment6.tres" type="Texture" id=4]
+[ext_resource path="res://sprites/environment.sprites/environment7.tres" type="Texture" id=5]
+[ext_resource path="res://sprites/environment.sprites/environment8.tres" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "fire",
+"speed": 8.0
+} ]
+
+[node name="MortarGunner" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision", "Pause", "Transform" ]
+
+[node name="Sprite" parent="." index="0"]
+
+frames = SubResource( 1 )
+
+[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
+
+[connection signal="frame_changed" from="Sprite" to="." method="_on_Sprite_frame_changed"]
+
+
