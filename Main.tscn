@@ -31,6 +31,7 @@ extents = Vector2( 10, 1350 )
 [node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="Camera" type="Camera2D" parent="." index="0" groups=[
 "camera",
@@ -156,12 +157,12 @@ position = Vector2( -580, -920 )
 shape = SubResource( 3 )
 _sections_unfolded = [ "Visibility" ]
 
-[node name="Building" type="Node" parent="." index="4"]
+[node name="Building" type="Node2D" parent="." index="4"]
 
 [node name="Floor" parent="Building" index="0" instance=ExtResource( 7 )]
 
 position = Vector2( 600, 560 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Floor2" parent="Building" index="1" instance=ExtResource( 7 )]
 

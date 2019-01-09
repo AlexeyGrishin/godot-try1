@@ -24,7 +24,6 @@ AutoResize="*res://scripts/AutoResize.gd"
 [display]
 
 window/size/width=800
-window/stretch/mode="viewport"
 
 [editor_plugins]
 

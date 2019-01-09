@@ -90,7 +90,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Animation", "Color", "Damping", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Radial Accel", "Scale", "Spread", "Trail" ]
 
-[node name="Sharp" groups=[
+[node name="Sharp" index="0" groups=[
 "bullet",
 ] instance=ExtResource( 1 )]
 
@@ -110,7 +110,7 @@ animation = "bullet1"
 
 rotation = -1.5708
 emitting = true
-amount = 32
+amount = 16
 lifetime = 0.1
 one_shot = false
 preprocess = 0.0

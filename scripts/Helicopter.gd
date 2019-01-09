@@ -34,10 +34,10 @@ func set_firing(val):
 	firing = val and bullets > 0
 	if $HelicopterBody != null:
 		var anim = "idle"
-		if val:
+		if firing:
 			anim = "rotating"
 		$HelicopterBody/Gun.play(anim)
-		$HelicopterBody/Gun/Fire.visible = val
+		$HelicopterBody/Gun/Fire.visible = firing
 		
 func inc_health(v):
 	health = min(100, health+v)
@@ -74,6 +74,8 @@ func _fire(delta):
 		if reload < 0:
 			reload = BULLET_RELOAD
 			_emit_bullet()
+	if firing and bullets == 0:
+		set_firing(false)
 			
 func _emit_bullet():
 	bullets -= 1
