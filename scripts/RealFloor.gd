@@ -30,7 +30,7 @@ func _ready():
 	$colliders/Floor2.position.y = global.ATTACK_HALF_SIZE
 	$colliders/Floor2/CollisionShape2D.shape.extents.x = sqrt(radius*radius - global.ATTACK_HALF_SIZE*global.ATTACK_HALF_SIZE/global.ASPECT/global.ASPECT)
 	
-	global.model.add_floor(floor_id, position.y, radius, top_radius, height)
+	global.model.add_floor(floor_id, to_global(Vector2(0,0)).y, radius, top_radius, height)
 	
 	$colliders/LeftWindow.position.y = -height/2
 	$colliders/LeftWindow/CollisionShape2D.shape.extents.y = height/2
@@ -123,6 +123,7 @@ func _on_LeftWindow_body_entered(body):
 			sign_x = 1
 		util.drop_sharps("glass", 12, rect, Vector2(sign_x*300, -10), $colliders)
 		body.queue_free()
+		$LeftGlass.play_random()
 
 
 func _on_RightWindow_body_entered(body):
@@ -137,3 +138,5 @@ func _on_RightWindow_body_entered(body):
 		)
 		util.drop_sharps("glass", 12, rect, Vector2(300, -10), $colliders)
 		body.queue_free()
+		$RightGlass.play_random()
+

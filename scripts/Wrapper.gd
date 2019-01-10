@@ -18,15 +18,6 @@ func wrap(sprite):
 	wrapped.connect("on_destroy", self, "_on_wrapped_destroy")
 	
 func _on_destroy(old_wrapped):
-	for c in self.get_children():
-		if c == old_wrapped:
-			continue
-		self.remove_child(c)
-		self.get_parent().add_child(c)
-		c.position.x += position.x
-		c.position.y += position.y
-			
-	call_deferred("queue_free")
 	emit_signal("on_destroy")
 	
 func _on_wrapped_destroy(obj):

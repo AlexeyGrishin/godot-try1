@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/UI.gd" type="Script" id=1]
 [ext_resource path="res://sprites/crates.sprites/crates0.tres" type="Texture" id=2]
 [ext_resource path="res://sprites/crates.sprites/crates2.tres" type="Texture" id=3]
+[ext_resource path="res://sprites/boss_icon.png" type="Texture" id=4]
+[ext_resource path="res://sprites/ui_bg.png" type="Texture" id=5]
+[ext_resource path="res://sprites/ui_ready.png" type="Texture" id=6]
+[ext_resource path="res://sprites/ui_gameover.png" type="Texture" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -60,8 +64,37 @@ shadow_size = 0
 anti_aliasing = true
 anti_aliasing_size = 1
 
+[sub_resource type="StyleBoxFlat" id=3]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0.6, 0.6, 0.6, 1 )
+draw_center = true
+border_width_left = 0
+border_width_top = 0
+border_width_right = 0
+border_width_bottom = 0
+border_color = Color( 0.8, 0.8, 0.8, 1 )
+border_blend = false
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+
 [node name="UI" type="MarginContainer"]
 
+pause_mode = 2
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -76,16 +109,18 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
 margin_right = 228.0
-margin_bottom = 72.0
+margin_bottom = 92.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -97,6 +132,7 @@ _sections_unfolded = [ "Size Flags" ]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -159,7 +195,6 @@ _sections_unfolded = [ "Anchor", "Percent", "Rect", "custom_styles" ]
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" index="1"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -220,7 +255,7 @@ rounded = false
 percent_visible = true
 _sections_unfolded = [ "Anchor", "Grow Direction", "Percent", "Rect", "custom_styles" ]
 
-[node name="Label" type="Label" parent="VBoxContainer" index="2"]
+[node name="BossProgress" type="HBoxContainer" parent="VBoxContainer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -228,7 +263,69 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 40.0
 margin_right = 220.0
-margin_bottom = 54.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/BossProgress" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 16.0
+margin_bottom = 16.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 4 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect", "Size Flags" ]
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/BossProgress" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 20.0
+margin_right = 220.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 200, 16 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+custom_styles/fg = SubResource( 3 )
+min_value = 0.0
+max_value = 1000.0
+step = 10.0
+page = 0.0
+value = 500.0
+exp_edit = false
+rounded = false
+percent_visible = true
+_sections_unfolded = [ "custom_styles" ]
+
+[node name="Label" type="Label" parent="VBoxContainer" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 60.0
+margin_right = 220.0
+margin_bottom = 74.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -240,15 +337,15 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Objects" type="Label" parent="VBoxContainer" index="3"]
+[node name="Objects" type="Label" parent="VBoxContainer" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 58.0
+margin_top = 78.0
 margin_right = 220.0
-margin_bottom = 72.0
+margin_bottom = 92.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -259,5 +356,98 @@ text = "Objects"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Panel" type="Control" parent="." index="1"]
+
+pause_mode = 2
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_right = 228.0
+margin_bottom = 92.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Pause" ]
+
+[node name="BG" type="TextureRect" parent="Panel" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 192.0
+margin_top = 190.0
+margin_right = 592.0
+margin_bottom = 390.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 5 )
+stretch_mode = 0
+
+[node name="ReadyText" type="TextureRect" parent="Panel" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 222.0
+margin_top = 260.0
+margin_right = 540.0
+margin_bottom = 301.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 6 )
+stretch_mode = 0
+
+[node name="GameOverText" type="TextureRect" parent="Panel" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 222.0
+margin_top = 260.0
+margin_right = 551.0
+margin_bottom = 301.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 7 )
+stretch_mode = 0
+
+[node name="Noire" type="Sprite" parent="Panel" index="3"]
+
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -8, -10 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 5 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
+
+[node name="AllowKey" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="AllowKey" to="." method="_on_AllowKey_timeout"]
 
 

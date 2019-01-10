@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://bg.png" type="Texture" id=2]
@@ -10,7 +10,14 @@
 [ext_resource path="res://floors/Floor2.tscn" type="PackedScene" id=8]
 [ext_resource path="res://floors/Floor3.tscn" type="PackedScene" id=9]
 [ext_resource path="res://floors/Floor4.tscn" type="PackedScene" id=10]
-[ext_resource path="res://UI.tscn" type="PackedScene" id=11]
+[ext_resource path="res://floors/FloorBoss.tscn" type="PackedScene" id=11]
+[ext_resource path="res://floors/FillerFloor.tscn" type="PackedScene" id=12]
+[ext_resource path="res://floors/FloorTutorial1.tscn" type="PackedScene" id=13]
+[ext_resource path="res://floors/FloorTutorial2.tscn" type="PackedScene" id=14]
+[ext_resource path="res://floors/FloorTutorial3.tscn" type="PackedScene" id=15]
+[ext_resource path="res://floors/OverBoss.tscn" type="PackedScene" id=16]
+[ext_resource path="res://sounds/boss_kill.wav" type="AudioStream" id=17]
+[ext_resource path="res://UI.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Gradient" id=1]
 
@@ -48,7 +55,7 @@ limit_bottom = 595
 limit_smoothed = false
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
-smoothing_enabled = true
+smoothing_enabled = false
 smoothing_speed = 1.0
 offset_v = 0.0
 offset_h = 0.0
@@ -63,7 +70,6 @@ _sections_unfolded = [ "Editor", "Limit", "Smoothing", "Transform" ]
 
 [node name="Background" type="Node2D" parent="." index="1"]
 
-editor/display_folded = true
 z_index = -2
 z_as_relative = false
 _sections_unfolded = [ "Z Index" ]
@@ -109,17 +115,13 @@ _sections_unfolded = [ "Material", "Visibility" ]
 
 [node name="Helicopter" parent="." index="2" instance=ExtResource( 6 )]
 
-position = Vector2( 230, 420 )
-speed = 300
-firing = false
+position = Vector2( 90, 520 )
 
 [node name="Walls" type="Node" parent="." index="3"]
 
-editor/display_folded = true
-
 [node name="Area2D" type="StaticBody2D" parent="Walls" index="0"]
 
-position = Vector2( 570, 220 )
+position = Vector2( 572, 222 )
 input_pickable = false
 collision_layer = 258
 collision_mask = 1
@@ -159,40 +161,105 @@ _sections_unfolded = [ "Visibility" ]
 
 [node name="Building" type="Node2D" parent="." index="4"]
 
+position = Vector2( 590, 560 )
+
 [node name="Floor" parent="Building" index="0" instance=ExtResource( 7 )]
 
-position = Vector2( 600, 560 )
+position = Vector2( 2, -496 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Floor2" parent="Building" index="1" instance=ExtResource( 7 )]
 
-position = Vector2( 600, 480 )
+position = Vector2( 2, -576 )
 _sections_unfolded = [ "Transform" ]
 floor_scene_path = ExtResource( 8 )
 
 [node name="Floor3" parent="Building" index="2" instance=ExtResource( 7 )]
 
-position = Vector2( 600, 360 )
+position = Vector2( 2, -696 )
 _sections_unfolded = [ "Transform" ]
 floor_scene_path = ExtResource( 9 )
 
 [node name="Floor4" parent="Building" index="3" instance=ExtResource( 7 )]
 
-position = Vector2( 600, 280 )
+position = Vector2( 2, -776 )
 _sections_unfolded = [ "Transform" ]
 floor_scene_path = ExtResource( 10 )
 
-[node name="UI" parent="." index="5" instance=ExtResource( 11 )]
+[node name="Floor5" parent="Building" index="4" instance=ExtResource( 7 )]
 
-[node name="CrateTimer" type="Timer" parent="." index="6"]
+position = Vector2( 2, -956 )
+_sections_unfolded = [ "Transform" ]
+floor_scene_path = ExtResource( 11 )
+
+[node name="floorfill" parent="Building" index="5" instance=ExtResource( 7 )]
+
+position = Vector2( 2, -1116 )
+_sections_unfolded = [ "Transform" ]
+floor_scene_path = ExtResource( 12 )
+
+[node name="tut1" parent="Building" index="6" instance=ExtResource( 7 )]
+
+_sections_unfolded = [ "Transform" ]
+floor_scene_path = ExtResource( 13 )
+
+[node name="tut2" parent="Building" index="7" instance=ExtResource( 7 )]
+
+position = Vector2( 2, -196 )
+_sections_unfolded = [ "Transform" ]
+floor_scene_path = ExtResource( 14 )
+
+[node name="tut3" parent="Building" index="8" instance=ExtResource( 7 )]
+
+position = Vector2( 2, -316 )
+_sections_unfolded = [ "Transform" ]
+floor_scene_path = ExtResource( 15 )
+
+[node name="overboss" parent="Building" index="9" instance=ExtResource( 7 )]
+
+position = Vector2( 2, -1036 )
+_sections_unfolded = [ "Transform" ]
+floor_scene_path = ExtResource( 16 )
+
+[node name="CrateTimer" type="Timer" parent="." index="5"]
 
 process_mode = 1
 wait_time = 10.0
 one_shot = false
 autostart = true
 
-[node name="Crates" type="Node2D" parent="." index="7"]
+[node name="Crates" type="Node2D" parent="." index="6"]
+
+[node name="KillBoss" type="AudioStreamPlayer" parent="." index="7"]
+
+stream = ExtResource( 17 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="UILayer" type="CanvasLayer" parent="." index="8"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="UI" parent="UILayer" index="0" instance=ExtResource( 18 )]
+
+margin_bottom = 102.0
+
+[node name="AllowFireTimer" type="Timer" parent="." index="9"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = false
+autostart = false
 
 [connection signal="timeout" from="CrateTimer" to="." method="_on_CrateTimer_timeout"]
+
+[connection signal="timeout" from="AllowFireTimer" to="." method="_on_AllowFireTimer_timeout"]
 
 

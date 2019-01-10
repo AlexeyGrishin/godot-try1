@@ -8,26 +8,40 @@ enum State {
 	Firing
 }
 
-const CAMERA_PAD = 60
+const CAMERA_PAD = 100
 
 var state = State.Rotating
 
 var bg_width
+var allow_fire = false
 
 func _ready():
 	bg_width = $Background/Sky.texture.get_width()
 	global.model.post_init()
 	global.connect("on_angle_change", self, "_on_angle_change")
+	global.connect("on_boss_kill", self, "_on_boss_kill")
 	update_bg()
+	$UILayer/UI.connect("on_panel_close", self, "_on_panel_close")
+	$UILayer/UI.pause_and_show_panel($UILayer/UI.Panel.Ready)
+	
+func _on_panel_close():
+	if $Helicopter.health <= 0:
+		global.init()
+		get_tree().reload_current_scene()	
+	else:
+		$AllowFireTimer.start()
+	
+func _on_boss_kill(boss):
+	$KillBoss.play()
 	
 func _on_angle_change():
 	update_bg()
-	update_camera()
 	
 func update_camera():
 	var bottom_y = global.model.bottom_y
-	if bottom_y != -9999:
-		$Camera.position.y = bottom_y - get_viewport_rect().size.y + CAMERA_PAD
+	var desired_y = bottom_y - get_viewport_rect().size.y + CAMERA_PAD
+	if bottom_y != -9999 and desired_y < $Camera.position.y:
+		$Camera.position.y = max(desired_y, $Camera.position.y - 1)
 	
 func update_bg():
 	var angle_part = fposmod(global.model.angle / 2 / PI, 1.0)	
@@ -45,8 +59,13 @@ func _process(delta):
 		if Input.is_action_pressed("rotate_right"):
 			global.model.rotate(-0.02)
 			
-	$Helicopter.firing = Input.is_action_pressed("ui_select")
-	$UI.update_helicopter_stats($Helicopter)
+	$Helicopter.firing = allow_fire and Input.is_action_pressed("ui_select")
+	$UILayer/UI.update_helicopter_stats($Helicopter)
+	update_camera()
+	
+	if $Helicopter.health <= 0:
+		$UILayer/UI.pause_and_show_panel($UILayer/UI.Panel.GameOver)
+		
 
 
 func _on_CrateTimer_timeout():
@@ -68,3 +87,7 @@ func _on_CrateTimer_timeout():
 	
 	crate.position.x = rand_range(100, 300) #hardcode is bad...
 	crate.position.y = $Camera.position.y
+
+
+func _on_AllowFireTimer_timeout():
+	allow_fire = true

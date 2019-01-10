@@ -8,11 +8,17 @@ const WINDOWS_COUNT = 16.0
 const ATTACK_HALF_SIZE = 6.0
 
 signal on_angle_change
+signal on_boss_appear
+signal on_boss_kill
+
 var model
 
 func _ready():
 	model = BuildingModel.new(self)
 	pass
+	
+func init():
+	model = BuildingModel.new(self)
 	
 
 class WindowModel:
@@ -107,7 +113,9 @@ class BuildingModel:
 	var floors = []
 	var prev_bottom_y = 0.0
 	var bottom_y = 0.0
+	var next_floor_after_top_clear_y = 0.0 #i hate myself
 	var emitter
+	var all_clear = false
 	
 	func _init(emitter):
 		self.emitter = emitter
@@ -141,6 +149,8 @@ class BuildingModel:
 		return false
 		
 	func add_floor(id, y, radius, top_radius, height):
+		if get_floor(id) != null:
+			print("ERROR: duplicate id %d", id)
 		floors.append(FloorModel.new(id, y, radius, top_radius, height))
 		
 	func get_floor(id):
@@ -155,9 +165,19 @@ class BuildingModel:
 	func recalculate_bottom_y():
 		prev_bottom_y = bottom_y
 		bottom_y = -9999
+		next_floor_after_top_clear_y = 9999
+		all_clear = true
 		for flr in floors:
 			if not flr.clear:
 				bottom_y = max(bottom_y, flr.y)
+				all_clear = false
+				
+		for flr in floors:
+			if flr.clear and flr.y > bottom_y:
+				next_floor_after_top_clear_y = min(next_floor_after_top_clear_y, flr.y)
+		
+		if next_floor_after_top_clear_y == 9999:
+			next_floor_after_top_clear_y = bottom_y
 		
 		
 	func on_floor_clear(id):

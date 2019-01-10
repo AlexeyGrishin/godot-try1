@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scripts/Helicopter.gd" type="Script" id=1]
 [ext_resource path="res://sprites/helicopter.sprites/helicopter1.tres" type="Texture" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://sprites/helicopter.sprites/helicopter3.tres" type="Texture" id=7]
 [ext_resource path="res://sprites/helicopter.sprites/helicopter4.tres" type="Texture" id=8]
 [ext_resource path="res://sprites/helicopter.sprites/helicopter5.tres" type="Texture" id=9]
+[ext_resource path="res://sounds/machinegun1.wav" type="AudioStream" id=10]
+[ext_resource path="res://sounds/hit1.wav" type="AudioStream" id=11]
+[ext_resource path="res://sounds/rotor.wav" type="AudioStream" id=12]
 
 [sub_resource type="Animation" id=1]
 
@@ -75,7 +78,46 @@ animations = [ {
 "speed": 16.0
 } ]
 
-[node name="Helicopter" type="KinematicBody2D"]
+[sub_resource type="ParticlesMaterial" id=7]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 5.0
+flatness = 0.0
+gravity = Vector3( -50, -100, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.0
+angular_velocity = 1.83671e-40
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.5
+scale_random = 0.0
+color = Color( 0.22505, 0.296875, 0.295192, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Damping", "Gravity", "Hue Variation", "Initial Velocity", "Scale", "Spread" ]
+
+[node name="Helicopter" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -83,8 +125,8 @@ collision_mask = 34
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform", "collision" ]
-speed = 50
-firing = true
+speed = 300
+firing = false
 emiting = false
 bullets = 100
 
@@ -115,6 +157,7 @@ offset = Vector2( 0, 0.256972 )
 
 frames = SubResource( 4 )
 animation = "default"
+frame = 1
 playing = true
 offset = Vector2( -3, 0.256972 )
 _sections_unfolded = [ "Transform" ]
@@ -131,7 +174,61 @@ visible = false
 position = Vector2( 12, 11 )
 frames = SubResource( 6 )
 animation = "default"
+frame = 1
 playing = true
 _sections_unfolded = [ "Visibility" ]
+
+[node name="Gun" type="AudioStreamPlayer" parent="." index="3"]
+
+stream = ExtResource( 10 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Hit" type="AudioStreamPlayer" parent="." index="4"]
+
+stream = ExtResource( 11 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Rotor" type="AudioStreamPlayer2D" parent="." index="5"]
+
+stream = ExtResource( 12 )
+volume_db = -20.0
+pitch_scale = 1.0
+autoplay = true
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Gilzes" type="Particles2D" parent="." index="6"]
+
+position = Vector2( -9.34102, 8.67381 )
+rotation = 3.50943
+emitting = false
+amount = 16
+lifetime = 3.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 2.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 7 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time" ]
 
 

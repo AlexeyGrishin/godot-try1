@@ -1,13 +1,13 @@
 extends Node
 
-const FLOOR = Color("#444444")
-const FLOOR_HIGHLIGHT = Color("#01770000")
+const FLOOR = Color("#556666")
+const FLOOR_HIGHLIGHT = Color("#20ff0000")
 const FLOOR_DONE = Color("#447744")
 
 #72a3b0
-const WINDOW_FRONT = Color("#6672a3b0") #Color(0, 0.4, 0.8, 0.3)
+const WINDOW_FRONT = Color("#3372a3b0") #Color(0, 0.4, 0.8, 0.3)
 const WINDOW_BACK = Color("#aa46656d") #Color(0, 0.2, 0.6, 0.6)
-
+const WINDOW_EDGE = Color("#8872a3b0")
 const LIGHT_VECTOR = Vector2(1, 0)
 
 func light(angle):

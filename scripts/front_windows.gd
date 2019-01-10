@@ -19,5 +19,5 @@ func _draw():
 		if not window.is_back :
 			draw_polyline(
 				PoolVector2Array(window.coords_to_draw),
-				Color(0.2, 0.2, 0.2, 1)
+				colors.WINDOW_EDGE
 			)

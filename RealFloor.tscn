@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/RealFloor.gd" type="Script" id=1]
 [ext_resource path="res://floors/Floor1.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://scripts/floor_circle.gd" type="Script" id=4]
 [ext_resource path="res://scripts/front_windows.gd" type="Script" id=5]
 [ext_resource path="res://scripts/Floor.gd" type="Script" id=6]
+[ext_resource path="res://RandomPlayer2D.tscn" type="PackedScene" id=7]
+[ext_resource path="res://sounds/window1.wav" type="AudioStream" id=8]
+[ext_resource path="res://sounds/window2.wav" type="AudioStream" id=9]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -116,6 +119,17 @@ _sections_unfolded = [ "Collision", "Transform" ]
 
 shape = SubResource( 3 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="LeftGlass" parent="." index="6" instance=ExtResource( 7 )]
+
+position = Vector2( -200, 0 )
+sound1 = ExtResource( 8 )
+sound2 = ExtResource( 9 )
+
+[node name="RightGlass" parent="." index="7" instance=ExtResource( 7 )]
+
+sound1 = ExtResource( 8 )
+sound2 = ExtResource( 9 )
 
 [connection signal="body_entered" from="colliders/LeftWindow" to="." method="_on_LeftWindow_body_entered"]
 
