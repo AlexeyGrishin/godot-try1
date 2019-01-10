@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/helicopter.png-3ef1bed63108977b545515b1de7fdca4.stex"
+path="res://.import/chair.png-04b620fd7c2c29a99782597021fa1b18.stex"
 
 [deps]
 
-source_file="res://sprites/helicopter.png"
-dest_files=[ "res://.import/helicopter.png-3ef1bed63108977b545515b1de7fdca4.stex" ]
+source_file="res://cutscenes/chair.png"
+dest_files=[ "res://.import/chair.png-04b620fd7c2c29a99782597021fa1b18.stex" ]
 
 [params]
 
@@ -25,5 +25,5 @@ process/premult_alpha=false
 process/HDR_as_SRGB=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0
