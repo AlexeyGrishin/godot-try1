@@ -1,8 +1,21 @@
 extends "Sharp.gd"
 
+var damage = 1
+
+func get_damage():
+	return damage
+
 func _ready():
 	self.angular_velocity = 0.0
+	self.bounce = 0.0
 
+func set_kill_people(val, damage):
+	if val:
+		self.add_to_group("kill_people")
+		self.damage = damage
+		
+func set_damage(damage):
+	self.damage = damage
 
 func set_animation(name):
 	$AnimatedSprite.animation = name
@@ -21,4 +34,5 @@ func use_trail(amount = 32):
 
 func _on_Sharp_body_entered(body):
 	body.on_bullet_hit(self)
+	#if bounce == 0:
 	self.queue_free()

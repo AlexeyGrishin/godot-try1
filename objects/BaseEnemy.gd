@@ -10,6 +10,8 @@ const ENEMY_H = 16
 var target = null
 var last_target = null
 
+var hp = 1
+
 class PseudoNode:
 	var position
 	
@@ -54,12 +56,23 @@ func do_destroy(velocity):
 	self.emit_signal("on_destroy", self)
 	self.queue_free()
 
+func decrease_hp(by):
+	var attack = 1
+	if by.has_method("get_damage"):
+		attack = by.get_damage()
+	hp -= attack
+	if hp > 0:
+		$AnimationPlayer.play("hit")
+	
+func on_hit(by):
+	decrease_hp(by)
+	if hp <= 0:
+		do_destroy(Vector2(100, -50))
+	
 
 func _on_BaseEnemy_body_entered(body):
-	
-	if body.is_in_group("heli_bullet"):
-		do_destroy(Vector2(100, -50))
-
+	if body.is_in_group("kill_people"):
+		on_hit(body)
 
 
 func do_fire_after_reload():
@@ -72,8 +85,8 @@ func do_stop_fire():
 	pass
 	
 func _on_ReloadTimer_timeout():
-	do_fire_after_reload()
 	$ReloadTimer.start()
+	do_fire_after_reload()
 
 
 func _on_Vision_body_entered(body):

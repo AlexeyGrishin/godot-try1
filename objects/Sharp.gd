@@ -32,3 +32,7 @@ func _on_Sharp_sleeping_state_changed():
 
 func _on_Timer_timeout():
 	queue_free()
+
+
+func _on_Lifetimer_timeout():
+	queue_free()

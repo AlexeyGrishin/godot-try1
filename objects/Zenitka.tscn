@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://objects/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/Zenitka.gd" type="Script" id=2]
 [ext_resource path="res://sprites/environment.sprites/environment2.tres" type="Texture" id=3]
 [ext_resource path="res://sprites/environment.sprites/environment4.tres" type="Texture" id=4]
 [ext_resource path="res://sprites/environment.sprites/environment24.tres" type="Texture" id=5]
+[ext_resource path="res://sounds/machinegun1.wav" type="AudioStream" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -27,6 +28,17 @@ script = ExtResource( 2 )
 [node name="Sprite" parent="." index="0"]
 
 frames = SubResource( 1 )
+
+[node name="Fire" type="AudioStreamPlayer2D" parent="." index="5"]
+
+stream = ExtResource( 6 )
+volume_db = -4.0
+pitch_scale = 2.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
 

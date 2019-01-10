@@ -1,0 +1,14 @@
+[remap]
+
+importer="snkkid.SpriteSheetImporter"
+type="Resource"
+path="res://.import/boss.json-5b0b0f8a26728fa2440640e5400d7716.res"
+
+[deps]
+
+source_file="res://sprites/boss.json"
+dest_files=[ "res://.import/boss.json-5b0b0f8a26728fa2440640e5400d7716.res" ]
+
+[params]
+
+Import_As_Atlas=true

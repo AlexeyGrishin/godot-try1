@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://floors/Metadata.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/MortarGunner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/Zenitka.tscn" type="PackedScene" id=3]
+[ext_resource path="res://objects/Barrel.tscn" type="PackedScene" id=4]
 
 [node name="Floor4" type="Node2D"]
 
@@ -21,36 +22,48 @@ position = Vector2( 130, -110 )
 
 position = Vector2( 110, -80 )
 
-[node name="MortarGunner3" parent="." index="3" instance=ExtResource( 2 )]
+[node name="MortarGunner9" parent="." index="3" instance=ExtResource( 2 )]
+
+position = Vector2( 60, 10 )
+
+[node name="MortarGunner10" parent="." index="4" instance=ExtResource( 2 )]
+
+position = Vector2( -110, 10 )
+
+[node name="MortarGunner3" parent="." index="5" instance=ExtResource( 2 )]
 
 position = Vector2( 160, -20 )
 
-[node name="MortarGunner4" parent="." index="4" instance=ExtResource( 2 )]
+[node name="MortarGunner4" parent="." index="6" instance=ExtResource( 2 )]
 
 position = Vector2( 130, -40 )
 
-[node name="MortarGunner5" parent="." index="5" instance=ExtResource( 2 )]
+[node name="MortarGunner5" parent="." index="7" instance=ExtResource( 2 )]
 
 position = Vector2( -140, 70 )
 
-[node name="MortarGunner6" parent="." index="6" instance=ExtResource( 2 )]
+[node name="MortarGunner6" parent="." index="8" instance=ExtResource( 2 )]
 
 position = Vector2( -120, 80 )
 
-[node name="MortarGunner7" parent="." index="7" instance=ExtResource( 2 )]
+[node name="MortarGunner7" parent="." index="9" instance=ExtResource( 2 )]
 
 position = Vector2( -120, 110 )
 
-[node name="MortarGunner8" parent="." index="8" instance=ExtResource( 2 )]
+[node name="MortarGunner8" parent="." index="10" instance=ExtResource( 2 )]
 
 position = Vector2( -160, 80 )
 
-[node name="Zenitka" parent="." index="9" instance=ExtResource( 3 )]
+[node name="Zenitka" parent="." index="11" instance=ExtResource( 3 )]
 
 position = Vector2( -140, 100 )
 
-[node name="Zenitka2" parent="." index="10" instance=ExtResource( 3 )]
+[node name="Zenitka2" parent="." index="12" instance=ExtResource( 3 )]
 
 position = Vector2( 150, -80 )
+
+[node name="Barrel" parent="." index="13" instance=ExtResource( 4 )]
+
+position = Vector2( -70, 10 )
 
 

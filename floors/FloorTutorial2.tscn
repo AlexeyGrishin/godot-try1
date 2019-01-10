@@ -1,0 +1,176 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://floors/Metadata.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/Soldier.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/Furniture.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/environment.sprites/environment20.tres" type="Texture" id=4]
+[ext_resource path="res://sprites/environment.sprites/environment21.tres" type="Texture" id=5]
+[ext_resource path="res://sprites/environment.sprites/environment15.tres" type="Texture" id=6]
+[ext_resource path="res://sprites/environment.sprites/environment16.tres" type="Texture" id=7]
+
+[node name="FloorTutorial2" type="Node2D"]
+
+[node name="Metadata" parent="." index="0" instance=ExtResource( 1 )]
+
+title = "Floor Turorial 2"
+id = "11"
+top_size = 400
+height = 120
+
+[node name="Soldier" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( -170, 0 )
+
+[node name="Soldier2" parent="." index="2" instance=ExtResource( 2 )]
+
+position = Vector2( -130, -120 )
+
+[node name="Soldier3" parent="." index="3" instance=ExtResource( 2 )]
+
+position = Vector2( -130, 130 )
+
+[node name="Soldier4" parent="." index="4" instance=ExtResource( 2 )]
+
+position = Vector2( 160, -50 )
+
+[node name="Furniture" parent="." index="5" instance=ExtResource( 3 )]
+
+position = Vector2( 120, 110 )
+texture = ExtResource( 4 )
+
+[node name="Furniture2" parent="." index="6" instance=ExtResource( 3 )]
+
+position = Vector2( 110, 120 )
+texture = ExtResource( 4 )
+
+[node name="Furniture3" parent="." index="7" instance=ExtResource( 3 )]
+
+position = Vector2( 100, 130 )
+texture = ExtResource( 4 )
+
+[node name="Furniture4" parent="." index="8" instance=ExtResource( 3 )]
+
+position = Vector2( 90, 140 )
+texture = ExtResource( 4 )
+
+[node name="Furniture5" parent="." index="9" instance=ExtResource( 3 )]
+
+position = Vector2( 80, 150 )
+texture = ExtResource( 4 )
+
+[node name="Furniture6" parent="." index="10" instance=ExtResource( 3 )]
+
+position = Vector2( 30, 150 )
+texture = ExtResource( 5 )
+
+[node name="Furniture7" parent="." index="11" instance=ExtResource( 3 )]
+
+position = Vector2( 30, 140 )
+texture = ExtResource( 5 )
+
+[node name="Furniture8" parent="." index="12" instance=ExtResource( 3 )]
+
+position = Vector2( 30, 130 )
+texture = ExtResource( 5 )
+
+[node name="Furniture9" parent="." index="13" instance=ExtResource( 3 )]
+
+position = Vector2( 30, 120 )
+texture = ExtResource( 5 )
+
+[node name="Furniture10" parent="." index="14" instance=ExtResource( 3 )]
+
+position = Vector2( 10, 100 )
+texture = ExtResource( 6 )
+
+[node name="Furniture11" parent="." index="15" instance=ExtResource( 3 )]
+
+position = Vector2( 10, 110 )
+texture = ExtResource( 6 )
+
+[node name="Furniture12" parent="." index="16" instance=ExtResource( 3 )]
+
+position = Vector2( 10, 120 )
+texture = ExtResource( 6 )
+
+[node name="Furniture13" parent="." index="17" instance=ExtResource( 3 )]
+
+position = Vector2( 10, 130 )
+texture = ExtResource( 6 )
+
+[node name="Furniture14" parent="." index="18" instance=ExtResource( 3 )]
+
+position = Vector2( 10, 140 )
+texture = ExtResource( 6 )
+
+[node name="Furniture15" parent="." index="19" instance=ExtResource( 3 )]
+
+position = Vector2( 10, 150 )
+texture = ExtResource( 6 )
+
+[node name="Furniture16" parent="." index="20" instance=ExtResource( 3 )]
+
+position = Vector2( 10, 160 )
+texture = ExtResource( 6 )
+
+[node name="Furniture17" parent="." index="21" instance=ExtResource( 3 )]
+
+position = Vector2( 10, 170 )
+texture = ExtResource( 6 )
+
+[node name="Furniture18" parent="." index="22" instance=ExtResource( 3 )]
+
+position = Vector2( 20, 100 )
+texture = ExtResource( 6 )
+
+[node name="Furniture19" parent="." index="23" instance=ExtResource( 3 )]
+
+position = Vector2( 30, 100 )
+texture = ExtResource( 6 )
+
+[node name="Furniture20" parent="." index="24" instance=ExtResource( 3 )]
+
+position = Vector2( 40, 100 )
+texture = ExtResource( 6 )
+
+[node name="Furniture21" parent="." index="25" instance=ExtResource( 3 )]
+
+position = Vector2( 50, 100 )
+texture = ExtResource( 6 )
+
+[node name="Furniture22" parent="." index="26" instance=ExtResource( 3 )]
+
+position = Vector2( 60, 100 )
+texture = ExtResource( 6 )
+
+[node name="Furniture23" parent="." index="27" instance=ExtResource( 3 )]
+
+position = Vector2( 70, 100 )
+texture = ExtResource( 6 )
+
+[node name="Furniture24" parent="." index="28" instance=ExtResource( 3 )]
+
+position = Vector2( 80, 100 )
+texture = ExtResource( 6 )
+
+[node name="Furniture25" parent="." index="29" instance=ExtResource( 3 )]
+
+position = Vector2( 90, 100 )
+texture = ExtResource( 6 )
+
+[node name="Furniture26" parent="." index="30" instance=ExtResource( 3 )]
+
+position = Vector2( 100, 100 )
+texture = ExtResource( 6 )
+
+[node name="Furniture27" parent="." index="31" instance=ExtResource( 3 )]
+
+position = Vector2( 110, 100 )
+texture = ExtResource( 6 )
+
+[node name="Furniture28" parent="." index="32" instance=ExtResource( 3 )]
+
+position = Vector2( 0, 0 )
+texture = ExtResource( 7 )
+
+

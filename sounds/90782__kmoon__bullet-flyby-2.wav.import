@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/90782__kmoon__bullet-flyby-2.wav-f303dcb4c72c926caac1025f27bedeb7.sample"
+
+[deps]
+
+source_file="res://sounds/90782__kmoon__bullet-flyby-2.wav"
+dest_files=[ "res://.import/90782__kmoon__bullet-flyby-2.wav-f303dcb4c72c926caac1025f27bedeb7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

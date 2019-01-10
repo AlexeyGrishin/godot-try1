@@ -21,6 +21,7 @@ func post_init():
 
 func do_fire_after_reload():
 	$Sprite.play("fire")
+	$Fire.play()
 	
 	
 func do_start_fire():
@@ -44,6 +45,7 @@ func _on_Sprite_frame_changed():
 			get_parent().add_child(bullet)
 			bullet.set_animation("mortar_bullet")
 			bullet.mass = 4
+			bullet.set_damage(2)
 			bullet.use_trail(8)
 			bullet.position = self.position + Vector2(-6, -8)
 			#bullet.rotation = vec.angle()

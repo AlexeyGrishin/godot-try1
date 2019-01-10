@@ -1,3 +1,4 @@
+tool
 extends Area2D
 
 export(Texture) var texture = preload("res://sprites/environment.sprites/environment18.tres")
@@ -29,10 +30,10 @@ func set_under_attack(val):
 		$Sprite/Highlighter.visible = val
 	self.set_collision_layer_bit(2, val)
 
-func _process(delta):
-	if debugScene:
-		if Input.is_action_just_pressed("debug_1"):
-			do_destroy(Vector2(100, -50))
+#func _process(delta):
+#	if debugScene:
+#		if Input.is_action_just_pressed("debug_1"):
+#			do_destroy(Vector2(100, -50))
 
 func do_destroy(velocity):
 	var util = get_node("/root/util")

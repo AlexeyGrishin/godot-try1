@@ -3,22 +3,26 @@
 [ext_resource path="res://objects/HeliBullet.gd" type="Script" id=1]
 [ext_resource path="res://sprites/bullets.sprites/bullets0.tres" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 5.07021, 2.85751 )
+radius = 1.96825
+height = 4.16406
 
 [node name="HeliBullet" type="KinematicBody2D" groups=[
-"bullet",
 "heli_bullet",
+"bullet",
+"kill_people",
 ]]
 
+rotation = 0.261799
+scale = Vector2( 2, 2 )
 input_pickable = false
 collision_layer = 8
 collision_mask = 20
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -26,7 +30,9 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
+rotation = 4.68771
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="2"]
 

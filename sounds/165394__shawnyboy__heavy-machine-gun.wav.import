@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/165394__shawnyboy__heavy-machine-gun.wav-e77cc2292e062b7066e755e1741c3bd8.sample"
+
+[deps]
+
+source_file="res://sounds/165394__shawnyboy__heavy-machine-gun.wav"
+dest_files=[ "res://.import/165394__shawnyboy__heavy-machine-gun.wav-e77cc2292e062b7066e755e1741c3bd8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -29,7 +29,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 2.0
 scale_random = 0.0
-color = Color( 0.667969, 0.118511, 0.118511, 1 )
+color = Color( 1, 0.975302, 0.604839, 1 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -43,7 +43,7 @@ _sections_unfolded = [ "Angle", "Angular Velocity", "Animation", "Color", "Dampi
 
 rotation = -0.638183
 emitting = false
-amount = 4
+amount = 8
 lifetime = 0.2
 one_shot = true
 preprocess = 0.0

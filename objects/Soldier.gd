@@ -20,6 +20,7 @@ func post_init():
 
 func do_fire_after_reload():
 	$Sprite.play("fire")
+	$Fire.play()
 	
 	
 func do_start_fire():

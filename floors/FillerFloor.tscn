@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://floors/Metadata.tscn" type="PackedScene" id=1]
+
+[node name="FillerFloor" type="Node2D"]
+
+[node name="Metadata" parent="." index="0" instance=ExtResource( 1 )]
+
+title = "After boss"
+size = 300
+id = "60"
+top_size = 280
+height = 500
+
+

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/rotor.wav-34164b5e1d5d5f9b02d5ecd03c2cebac.sample"
+
+[deps]
+
+source_file="res://sounds/rotor.wav"
+dest_files=[ "res://.import/rotor.wav-34164b5e1d5d5f9b02d5ecd03c2cebac.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=true
+compress/mode=0

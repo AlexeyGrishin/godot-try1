@@ -1,0 +1,14 @@
+[remap]
+
+importer="snkkid.SpriteSheetImporter"
+type="Resource"
+path="res://.import/friends.json-87f8962b800478d832dc961bf70a1018.res"
+
+[deps]
+
+source_file="res://sprites/friends.json"
+dest_files=[ "res://.import/friends.json-87f8962b800478d832dc961bf70a1018.res" ]
+
+[params]
+
+Import_As_Atlas=true

@@ -4,8 +4,10 @@ var bullet_ctor = preload("res://objects/EnemyBullet.tscn")
 	
 const SPEED = 500
 const SALVO = 1
+
 	
 func post_init():
+	hp = 10
 	$ReloadTimer.wait_time = 0.1
 	if get_viewport() == get_parent():
 		target = Node2D.new()
@@ -21,6 +23,7 @@ func post_init():
 func do_fire_after_reload():
 	$Sprite.stop()
 	$Sprite.play("fire")
+	$Fire.play()
 	
 	
 func do_start_fire():
@@ -30,6 +33,7 @@ func do_start_fire():
 func do_stop_fire():
 	$ReloadTimer.stop()
 	$Sprite.play("idle")
+	$Fire.stop()
 
 
 func _on_Sprite_animation_finished():
