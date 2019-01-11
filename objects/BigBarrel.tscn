@@ -29,4 +29,8 @@ script = ExtResource( 2 )
 
 frames = SubResource( 1 )
 
+[node name="Highlighter" parent="Sprite" index="0"]
+
+position = Vector2( 0, -12.7728 )
+
 

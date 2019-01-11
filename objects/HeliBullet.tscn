@@ -10,8 +10,8 @@ radius = 1.96825
 height = 4.16406
 
 [node name="HeliBullet" type="KinematicBody2D" groups=[
-"heli_bullet",
 "bullet",
+"heli_bullet",
 "kill_people",
 ]]
 

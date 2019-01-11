@@ -5,10 +5,11 @@ var bullet_ctor = preload("res://objects/EnemyBullet.tscn")
 var shots = 0
 
 const SUPER_SHOT_EVERY = 4
+const RESURRECT_EVERY = 8
 
 const SIMPLE_SPEED = 600
 const SUPER_SPEED = 150
-const AFTER_SUPER_SPEED = 50
+const AFTER_SUPER_SPEED = 150
 
 const SUPER_BULLETS = 3
 const BULLETS_IN_BULLET = 10
@@ -35,18 +36,18 @@ func post_init():
 #		do_destroy(Vector2(100,10))
 
 func do_fire_after_reload():
-	if not firing or shooting_now:
+	if (not firing) or shooting_now:
 		return
 	shooting_now = true
 	$ReloadTimer.stop()
 	shots += 1
 	if shots % SUPER_SHOT_EVERY == 0:
 		$SuperFire.play()
-		$AnimationPlayer.play("boss_super_fire")
+		$AttackAnimation.play("BossSuperFire")
 	else:
 		$Sprite.play("fire1")
 		$StandardFire.play()
-		$AnimationPlayer.play("boss_simple_fire")
+		$AttackAnimation.play("BossSimpleFire")
 
 func do_super_shot1():
 	$Sprite.play("fire2")		
@@ -55,7 +56,7 @@ func do_super_shot2():
 	for b in range(SUPER_BULLETS):
 		var bullet = bullet_ctor.instance()
 		var vec = Vector2(-3,-1).normalized()
-		vec = vec.normalized() * SUPER_SPEED * rand_range(0.9, 1.2)
+		vec = vec.normalized() * SUPER_SPEED * rand_range(0.7, 1.5)
 		get_parent().add_child(bullet)
 		bullet.set_animation("boss_bullet")
 		bullet.mass = 40
@@ -66,6 +67,9 @@ func do_super_shot2():
 		#bullet.rotation = vec.angle()
 		bullet.throw(vec, true)	
 		super_bullets.append(weakref(bullet))
+	if shots % RESURRECT_EVERY == 0:
+		global.emit_signal("on_boss_resurrect_call")		
+
 	
 func do_super_shot3():
 	for b in super_bullets:
@@ -105,7 +109,6 @@ func do_start_fire():
 	do_fire_after_reload()
 	
 func do_stop_fire():
-	#$ReloadTimer.stop()
 	firing = false
 
 
@@ -116,14 +119,13 @@ func do_destroy(velocity):
 	self.emit_signal("on_destroy", self)
 	self.queue_free()
 
-func _on_AnimationPlayer_animation_finished(anim_name):
-	shooting_now = false
-	if anim_name == "boss_simple_fire" or anim_name == "boss_super_fire":
-		$Sprite.stop()
-		$Sprite.play("idle")
-		if firing:
-			$ReloadTimer.start()
-
-
 func _on_VisibilityNotifier2D_screen_entered():
 	global.emit_signal("on_boss_appear", self)
+
+
+func _on_AttackAnimation_animation_finished(anim_name):
+	shooting_now = false
+	$Sprite.stop()
+	$Sprite.play("idle")
+	if firing:
+		$ReloadTimer.start()

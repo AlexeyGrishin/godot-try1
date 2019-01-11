@@ -1,7 +1,7 @@
 extends Area2D
 
 enum Contents {
-	Health, Bullets
+	Health, Bullets, Slowmotion
 }
 
 export(Contents) var contents = Contents.Health setget set_contents
@@ -15,6 +15,7 @@ func set_contents(val):
 	if has_node("Contents"):
 		$Contents/Health.visible = contents == Contents.Health
 		$Contents/Bullets.visible = contents == Contents.Bullets
+		$Contents/Clock.visible = contents == Contents.Slowmotion
 
 func _ready():
 	if amount == -1:
@@ -38,6 +39,8 @@ func _on_Area2D_body_entered(body):
 			body.inc_health(amount)
 		Contents.Bullets:
 			body.inc_bullets(amount)
+		Contents.Slowmotion:
+			body.inc_slomo(amount)
 	$AnimationPlayer.play("got")
 
 

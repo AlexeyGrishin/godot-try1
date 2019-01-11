@@ -1,11 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://objects/BaseEnemy.gd" type="Script" id=1]
 [ext_resource path="res://sprites/environment.sprites/environment2.tres" type="Texture" id=2]
 [ext_resource path="res://sprites/environment.sprites/environment4.tres" type="Texture" id=3]
 [ext_resource path="res://sprites/environment.sprites/environment24.tres" type="Texture" id=4]
-[ext_resource path="res://sprites/environment.sprites/environment23.tres" type="Texture" id=5]
-[ext_resource path="res://objects/HighlightAnimation.tres" type="Animation" id=6]
+[ext_resource path="res://sprites/environment.sprites/environment33.tres" type="Texture" id=5]
+[ext_resource path="res://sprites/environment.sprites/environment35.tres" type="Texture" id=6]
+[ext_resource path="res://sprites/environment.sprites/environment36.tres" type="Texture" id=7]
+[ext_resource path="res://sprites/environment.sprites/environment37.tres" type="Texture" id=8]
+[ext_resource path="res://sprites/environment.sprites/environment38.tres" type="Texture" id=9]
+[ext_resource path="res://sprites/environment.sprites/environment39.tres" type="Texture" id=10]
+[ext_resource path="res://objects/HighlightAnimation.tres" type="Animation" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -21,12 +26,40 @@ animations = [ {
 "speed": 16.0
 } ]
 
+[sub_resource type="Animation" id=5]
+
+resource_name = "idle"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Highlighter:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -16 ), Vector2( 0, -12 ), Vector2( 0, -16 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=6]
+
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": false,
+"name": "default",
+"speed": 8.0
+} ]
+
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 
 resource_name = "hit"
 length = 0.2
@@ -57,14 +90,14 @@ tracks/1/keys = {
 "values": [ 0.0, 5.0, 0.0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 400, 40 )
 
 [node name="BaseEnemy" type="Area2D" groups=[
-"destroyable",
 "enemy",
+"destroyable",
 ]]
 
 input_pickable = true
@@ -89,14 +122,31 @@ _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="Highlighter" type="Sprite" parent="Sprite" index="0"]
 
-visible = false
-self_modulate = Color( 1, 1, 1, 0.399572 )
+position = Vector2( 0, -15.2215 )
 texture = ExtResource( 5 )
 offset = Vector2( 0.5, -8 )
-_sections_unfolded = [ "Offset" ]
+_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
+
+[node name="Highlight" type="AnimationPlayer" parent="Sprite" index="1"]
+
+root_node = NodePath("..")
+autoplay = "idle"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/idle = SubResource( 5 )
+blend_times = [  ]
+
+[node name="ResurrectBox" type="AnimatedSprite" parent="Sprite" index="2"]
+
+visible = false
+frames = SubResource( 6 )
+animation = "default"
+offset = Vector2( 0, -8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
+visible = false
 position = Vector2( 0, -8 )
 shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
@@ -108,8 +158,8 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/hit = SubResource( 4 )
-anims/idle = ExtResource( 6 )
+anims/hit = SubResource( 3 )
+anims/idle = ExtResource( 11 )
 blend_times = [  ]
 
 [node name="Vision" type="Area2D" parent="." index="3"]
@@ -127,7 +177,7 @@ _sections_unfolded = [ "Collision" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vision" index="0"]
 
 visible = false
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="ReloadTimer" type="Timer" parent="." index="4"]
@@ -138,6 +188,8 @@ one_shot = true
 autostart = false
 
 [connection signal="body_entered" from="." to="." method="_on_BaseEnemy_body_entered"]
+
+[connection signal="animation_finished" from="Sprite/ResurrectBox" to="." method="_on_ResurrectBox_animation_finished"]
 
 [connection signal="body_entered" from="Vision" to="." method="_on_Vision_body_entered"]
 

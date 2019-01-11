@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/military-1.ogg-ccc13f49ee3c3a66ef54a6e11e8b0820.oggstr"
+
+[deps]
+
+source_file="res://sounds/military-1.ogg"
+dest_files=[ "res://.import/military-1.ogg-ccc13f49ee3c3a66ef54a6e11e8b0820.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

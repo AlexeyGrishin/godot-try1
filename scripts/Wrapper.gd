@@ -8,6 +8,13 @@ signal on_destroy
 func _ready():
 	global.connect("on_angle_change", self, "_on_angle_change")
 	redraw()
+	
+func resurrect(resurrect_scene):
+	if wrapped == null and resurrect_scene != null:
+		wrapped = resurrect_scene.instance()
+		wrap(wrapped)
+		wrapped.position = Vector2(0,0)
+		wrapped.resurrect()
 
 func _on_angle_change():
 	redraw()

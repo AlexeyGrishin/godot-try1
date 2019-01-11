@@ -30,6 +30,7 @@ extents = Vector2( 4, 50 )
 
 script = ExtResource( 1 )
 floor_scene_path = ExtResource( 2 )
+skip_enemies = false
 
 [node name="back_windows" type="Node2D" parent="." index="0"]
 
@@ -123,11 +124,13 @@ _sections_unfolded = [ "Transform" ]
 [node name="LeftGlass" parent="." index="6" instance=ExtResource( 7 )]
 
 position = Vector2( -200, 0 )
+bus = "Sounds"
 sound1 = ExtResource( 8 )
 sound2 = ExtResource( 9 )
 
 [node name="RightGlass" parent="." index="7" instance=ExtResource( 7 )]
 
+bus = "Sounds"
 sound1 = ExtResource( 8 )
 sound2 = ExtResource( 9 )
 

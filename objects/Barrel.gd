@@ -9,10 +9,14 @@ var debug_scene = false
 var damage = 4
 var bounce = 0
 
+var sound
 func _ready():
 	debug_scene = get_viewport() == get_parent()
 	if debug_scene:
 		position += Vector2(400, 400)
+	sound = $Explode
+	remove_child(sound)
+	get_parent().add_child(sound)
 
 func on_hit(by):
 	if exploding:
@@ -28,6 +32,7 @@ func _process(delta):
 func explode():
 	exploding = true
 	$Sprite.play("fire")
+	sound.play()
 	for b in range(bullets):
 		var vec = Vector2(rand_range(-100, 100), rand_range(-10,-20)).normalized()
 		var bullet = bullet_ctor.instance()

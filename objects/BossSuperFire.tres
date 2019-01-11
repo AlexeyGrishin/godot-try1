@@ -1,0 +1,41 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+
+resource_name = "boss_super_fire"
+length = 7.0
+loop = false
+step = 0.1
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 4.5, 4.8, 7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "do_super_shot1"
+}, {
+"args": [  ],
+"method": "do_super_shot2"
+}, {
+"args": [  ],
+"method": "do_super_shot3"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 2.6, 3, 3.4, 3.7, 3.9, 4.1, 4.3, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+

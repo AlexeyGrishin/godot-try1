@@ -1,20 +1,30 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=32 format=2]
 
-[ext_resource path="res://cutscenes/wall.png" type="Texture" id=1]
-[ext_resource path="res://cutscenes/floor.png" type="Texture" id=2]
-[ext_resource path="res://cutscenes/empty-tv.png" type="Texture" id=3]
-[ext_resource path="res://sprites/friends.sprites/friends13.tres" type="Texture" id=4]
-[ext_resource path="res://sprites/friends.sprites/friends14.tres" type="Texture" id=5]
-[ext_resource path="res://sprites/friends.sprites/friends15.tres" type="Texture" id=6]
-[ext_resource path="res://cutscenes/table.png" type="Texture" id=7]
-[ext_resource path="res://cutscenes/chair.png" type="Texture" id=8]
-[ext_resource path="res://sprites/friends.sprites/friends16.tres" type="Texture" id=9]
-[ext_resource path="res://sprites/friends.sprites/friends4.tres" type="Texture" id=10]
-[ext_resource path="res://sprites/friends.sprites/friends7.tres" type="Texture" id=11]
-[ext_resource path="res://sprites/friends.sprites/friends8.tres" type="Texture" id=12]
+[ext_resource path="res://cutscenes/CutScene1.gd" type="Script" id=1]
+[ext_resource path="res://cutscenes/wall.png" type="Texture" id=2]
+[ext_resource path="res://cutscenes/floor.png" type="Texture" id=3]
+[ext_resource path="res://cutscenes/empty-tv.png" type="Texture" id=4]
+[ext_resource path="res://sprites/friends.sprites/friends13.tres" type="Texture" id=5]
+[ext_resource path="res://sprites/friends.sprites/friends14.tres" type="Texture" id=6]
+[ext_resource path="res://sprites/friends.sprites/friends15.tres" type="Texture" id=7]
+[ext_resource path="res://cutscenes/table.png" type="Texture" id=8]
+[ext_resource path="res://cutscenes/chair2.png" type="Texture" id=9]
+[ext_resource path="res://sprites/friends.sprites/friends16.tres" type="Texture" id=10]
+[ext_resource path="res://cutscenes/white.png" type="Texture" id=11]
+[ext_resource path="res://sprites/friends.sprites/friends4.tres" type="Texture" id=12]
 [ext_resource path="res://sprites/friends.sprites/friends5.tres" type="Texture" id=13]
 [ext_resource path="res://sprites/friends.sprites/friends6.tres" type="Texture" id=14]
-[ext_resource path="res://Helicopter.tscn" type="PackedScene" id=15]
+[ext_resource path="res://sprites/friends.sprites/friends7.tres" type="Texture" id=15]
+[ext_resource path="res://sprites/friends.sprites/friends8.tres" type="Texture" id=16]
+[ext_resource path="res://Helicopter.tscn" type="PackedScene" id=17]
+[ext_resource path="res://cutscenes/dialog1.png" type="Texture" id=18]
+[ext_resource path="res://cutscenes/dialog2.png" type="Texture" id=19]
+[ext_resource path="res://cutscenes/dialog3.png" type="Texture" id=20]
+[ext_resource path="res://cutscenes/dialog4.png" type="Texture" id=21]
+[ext_resource path="res://cutscenes/dialog5.png" type="Texture" id=22]
+[ext_resource path="res://cutscenes/dialog6.png" type="Texture" id=23]
+[ext_resource path="res://sounds/rotor.wav" type="AudioStream" id=24]
+[ext_resource path="res://sounds/military-1.ogg" type="AudioStream" id=25]
 
 [sub_resource type="Gradient" id=1]
 
@@ -30,12 +40,12 @@ width = 10
 [sub_resource type="SpriteFrames" id=3]
 
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "talki",
 "speed": 8.0
@@ -44,26 +54,44 @@ animations = [ {
 [sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "celebrate",
-"speed": 8.0
 }, {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": true,
 "name": "walk",
 "speed": 8.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "celebrate",
+"speed": 8.0
 } ]
 
 [sub_resource type="Animation" id=5]
 
-resource_name = "play"
-length = 12.0
+resource_name = "fade"
+length = 0.3
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer3/Fader:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+
+length = 22.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -73,7 +101,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4, 6 ),
+"times": PoolRealArray( 0, 9.8, 15.8 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ "default", "talki", "default" ]
@@ -85,7 +113,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 4, 6 ),
+"times": PoolRealArray( 0, 9.8, 15.8 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false ]
@@ -97,7 +125,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 4, 6.8, 8.1 ),
+"times": PoolRealArray( 0, 9.8, 16.6, 17.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true, false ]
@@ -109,7 +137,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 8.1 ),
+"times": PoolRealArray( 0, 17.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ "default", "walk" ]
@@ -121,7 +149,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 8.1 ),
+"times": PoolRealArray( 0, 17.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -133,7 +161,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 8.1, 9.6 ),
+"times": PoolRealArray( 0, 17.9, 19.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 51, 45 ), Vector2( 51, 45 ), Vector2( 111.127, 55.0211 ) ]
@@ -145,13 +173,123 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 9.6, 11.1 ),
+"times": PoolRealArray( 0, 19.4, 20.9 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 50 ), Vector2( 0, 50 ), Vector2( 50, -20 ) ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("CanvasLayer3/Fader:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 21, 21.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("CanvasLayer3/dialogs/dialog1:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.3, 2.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("CanvasLayer3/dialogs/dialog2:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 3.1, 5.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("CanvasLayer3/dialogs/dialog3:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 6.1, 9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("CanvasLayer3/dialogs/dialog4:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 9.8, 15.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("CanvasLayer3/dialogs/dialog5:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 15.4, 16.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("CanvasLayer3/dialogs/dialog6:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 17.9, 20.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("CanvasLayer3/Rotor:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 19.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("CanvasLayer3/Rotor:volume_db")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 19.6, 20.4, 21.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -30.0, -10.0, -30.0 ]
+}
 
 [node name="Node2D" type="Node2D"]
+
+script = ExtResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="0"]
 
@@ -171,7 +309,7 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="Wall" type="Sprite" parent="CanvasLayer/BG" index="0"]
 
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 100, 50 )
@@ -179,7 +317,7 @@ _sections_unfolded = [ "Region" ]
 
 [node name="Floor" type="Sprite" parent="CanvasLayer/BG" index="1"]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 centered = false
 offset = Vector2( 0, 50 )
 region_enabled = true
@@ -206,39 +344,46 @@ _sections_unfolded = [ "Transform" ]
 [node name="Painting" type="Sprite" parent="CanvasLayer/BG" index="4"]
 
 position = Vector2( 20, 30 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="table" type="Sprite" parent="CanvasLayer/BG" index="5"]
 
 position = Vector2( 40, 45 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="chair" type="Sprite" parent="CanvasLayer/BG" index="6"]
 
 position = Vector2( 60, 45 )
-texture = ExtResource( 8 )
-flip_h = true
+texture = ExtResource( 9 )
 _sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="notebook" type="Sprite" parent="CanvasLayer/BG" index="7"]
 
 position = Vector2( 40, 40 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="Window" type="Sprite" parent="CanvasLayer/BG" index="8"]
+
+position = Vector2( 34, 5 )
+scale = Vector2( 1.7, 0.9 )
+texture = ExtResource( 11 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="Rooslan" type="AnimatedSprite" parent="CanvasLayer" index="2"]
 
-position = Vector2( 51, 45 )
+position = Vector2( 111.127, 55.0211 )
 frames = SubResource( 4 )
-animation = "default"
-flip_h = true
+animation = "walk"
+playing = true
 _sections_unfolded = [ "Transform" ]
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." index="1"]
 
-layer = 1
+layer = 2
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
@@ -263,7 +408,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 stretch = false
 stretch_shrink = 1
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Hint", "Rect", "Theme", "Visibility" ]
 
 [node name="Viewport" type="Viewport" parent="CanvasLayer2/ViewportContainer" index="0"]
 
@@ -274,14 +419,14 @@ world = null
 transparent_bg = false
 msaa = 0
 hdr = false
-disable_3d = true
+disable_3d = false
 usage = 0
 debug_draw = 0
 render_target_v_flip = false
 render_target_clear_mode = 0
 render_target_update_mode = 3
-audio_listener_enable_2d = false
-audio_listener_enable_3d = false
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 physics_object_picking = false
 gui_disable_input = false
 gui_snap_controls_to_pixels = true
@@ -290,7 +435,7 @@ shadow_atlas_quad_0 = 2
 shadow_atlas_quad_1 = 2
 shadow_atlas_quad_2 = 3
 shadow_atlas_quad_3 = 4
-_sections_unfolded = [ "GUI", "Render Target", "Rendering", "Shadow Atlas" ]
+_sections_unfolded = [ "Audio Listener", "GUI", "Render Target", "Rendering", "Shadow Atlas" ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="CanvasLayer2/ViewportContainer/Viewport" index="0"]
 
@@ -300,18 +445,131 @@ rotation = 0.0
 scale = Vector2( 4, 4 )
 transform = Transform2D( 4, 0, 0, 4, 0, 0 )
 
-[node name="Helicopter" parent="CanvasLayer2/ViewportContainer/Viewport/CanvasLayer" index="0" instance=ExtResource( 15 )]
+[node name="bg" type="Sprite" parent="CanvasLayer2/ViewportContainer/Viewport/CanvasLayer" index="0"]
 
-position = Vector2( 0, 50 )
+self_modulate = Color( 0.330771, 0.878906, 0.878906, 1 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 11 )
+flip_v = true
+_sections_unfolded = [ "Material", "Offset", "Transform", "Visibility" ]
+
+[node name="Helicopter" parent="CanvasLayer2/ViewportContainer/Viewport/CanvasLayer" index="1" instance=ExtResource( 17 )]
+
+position = Vector2( 50, -20 )
+no_slowmo = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 
 root_node = NodePath("..")
-autoplay = ""
+autoplay = "play"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/play = SubResource( 5 )
+anims/fade = SubResource( 5 )
+anims/play = SubResource( 6 )
 blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="." index="3"]
+
+editor/display_folded = true
+layer = 3
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="Fader" type="TextureRect" parent="CanvasLayer3" index="0"]
+
+self_modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -24.0
+margin_bottom = -24.0
+rect_min_size = Vector2( 800, 600 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 0
+_sections_unfolded = [ "Anchor", "Visibility" ]
+
+[node name="dialogs" type="Node2D" parent="CanvasLayer3" index="1"]
+
+position = Vector2( 0, 600 )
+
+[node name="dialog1" type="Sprite" parent="CanvasLayer3/dialogs" index="0"]
+
+visible = false
+position = Vector2( 0, -54 )
+texture = ExtResource( 18 )
+centered = false
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="dialog2" type="Sprite" parent="CanvasLayer3/dialogs" index="1"]
+
+visible = false
+position = Vector2( 0, -54 )
+texture = ExtResource( 19 )
+centered = false
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="dialog3" type="Sprite" parent="CanvasLayer3/dialogs" index="2"]
+
+visible = false
+position = Vector2( 0, -54 )
+texture = ExtResource( 20 )
+centered = false
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="dialog4" type="Sprite" parent="CanvasLayer3/dialogs" index="3"]
+
+visible = false
+position = Vector2( 0, -106 )
+texture = ExtResource( 21 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
+
+[node name="dialog5" type="Sprite" parent="CanvasLayer3/dialogs" index="4"]
+
+visible = false
+position = Vector2( 0, -54 )
+texture = ExtResource( 22 )
+centered = false
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="dialog6" type="Sprite" parent="CanvasLayer3/dialogs" index="5"]
+
+visible = false
+position = Vector2( 0, -54 )
+texture = ExtResource( 23 )
+centered = false
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="Rotor" type="AudioStreamPlayer" parent="CanvasLayer3" index="2"]
+
+stream = ExtResource( 24 )
+volume_db = -30.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Music" type="AudioStreamPlayer" parent="." index="4"]
+
+stream = ExtResource( 25 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Master"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 

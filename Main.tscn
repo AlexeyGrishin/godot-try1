@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://bg.png" type="Texture" id=2]
@@ -12,12 +12,14 @@
 [ext_resource path="res://floors/Floor4.tscn" type="PackedScene" id=10]
 [ext_resource path="res://floors/FloorBoss.tscn" type="PackedScene" id=11]
 [ext_resource path="res://floors/FillerFloor.tscn" type="PackedScene" id=12]
-[ext_resource path="res://floors/FloorTutorial1.tscn" type="PackedScene" id=13]
-[ext_resource path="res://floors/FloorTutorial2.tscn" type="PackedScene" id=14]
-[ext_resource path="res://floors/FloorTutorial3.tscn" type="PackedScene" id=15]
-[ext_resource path="res://floors/OverBoss.tscn" type="PackedScene" id=16]
-[ext_resource path="res://sounds/boss_kill.wav" type="AudioStream" id=17]
-[ext_resource path="res://UI.tscn" type="PackedScene" id=18]
+[ext_resource path="res://floors/FinalFloor.tscn" type="PackedScene" id=13]
+[ext_resource path="res://floors/FloorTutorial1.tscn" type="PackedScene" id=14]
+[ext_resource path="res://floors/FloorTutorial2.tscn" type="PackedScene" id=15]
+[ext_resource path="res://floors/FloorTutorial3.tscn" type="PackedScene" id=16]
+[ext_resource path="res://floors/OverBoss.tscn" type="PackedScene" id=17]
+[ext_resource path="res://sounds/boss_kill.wav" type="AudioStream" id=18]
+[ext_resource path="res://UI.tscn" type="PackedScene" id=19]
+[ext_resource path="res://sounds/military-2.ogg" type="AudioStream" id=20]
 
 [sub_resource type="Gradient" id=1]
 
@@ -35,7 +37,28 @@ width = 2048
 custom_solver_bias = 0.0
 extents = Vector2( 10, 1350 )
 
-[node name="Main" type="Node2D" index="0"]
+[sub_resource type="Animation" id=4]
+
+resource_name = "end"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "fade_ui"
+} ]
+}
+
+[node name="Main" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Z Index" ]
@@ -49,7 +72,7 @@ rotating = false
 current = true
 zoom = Vector2( 1, 1 )
 limit_left = 0
-limit_top = -2000
+limit_top = -1000
 limit_right = 800
 limit_bottom = 595
 limit_smoothed = false
@@ -70,6 +93,7 @@ _sections_unfolded = [ "Editor", "Limit", "Smoothing", "Transform" ]
 
 [node name="Background" type="Node2D" parent="." index="1"]
 
+editor/display_folded = true
 z_index = -2
 z_as_relative = false
 _sections_unfolded = [ "Z Index" ]
@@ -116,6 +140,7 @@ _sections_unfolded = [ "Material", "Visibility" ]
 [node name="Helicopter" parent="." index="2" instance=ExtResource( 6 )]
 
 position = Vector2( 90, 520 )
+no_slowmo = false
 
 [node name="Walls" type="Node" parent="." index="3"]
 
@@ -198,28 +223,34 @@ position = Vector2( 2, -1116 )
 _sections_unfolded = [ "Transform" ]
 floor_scene_path = ExtResource( 12 )
 
-[node name="tut1" parent="Building" index="6" instance=ExtResource( 7 )]
+[node name="final" parent="Building" index="6" instance=ExtResource( 7 )]
 
+position = Vector2( 2, -1516 )
 _sections_unfolded = [ "Transform" ]
 floor_scene_path = ExtResource( 13 )
 
-[node name="tut2" parent="Building" index="7" instance=ExtResource( 7 )]
+[node name="tut1" parent="Building" index="7" instance=ExtResource( 7 )]
 
-position = Vector2( 2, -196 )
 _sections_unfolded = [ "Transform" ]
 floor_scene_path = ExtResource( 14 )
 
-[node name="tut3" parent="Building" index="8" instance=ExtResource( 7 )]
+[node name="tut2" parent="Building" index="8" instance=ExtResource( 7 )]
 
-position = Vector2( 2, -316 )
+position = Vector2( 2, -196 )
 _sections_unfolded = [ "Transform" ]
 floor_scene_path = ExtResource( 15 )
 
-[node name="overboss" parent="Building" index="9" instance=ExtResource( 7 )]
+[node name="tut3" parent="Building" index="9" instance=ExtResource( 7 )]
+
+position = Vector2( 2, -316 )
+_sections_unfolded = [ "Transform" ]
+floor_scene_path = ExtResource( 16 )
+
+[node name="overboss" parent="Building" index="10" instance=ExtResource( 7 )]
 
 position = Vector2( 2, -1036 )
 _sections_unfolded = [ "Transform" ]
-floor_scene_path = ExtResource( 16 )
+floor_scene_path = ExtResource( 17 )
 
 [node name="CrateTimer" type="Timer" parent="." index="5"]
 
@@ -232,12 +263,12 @@ autostart = true
 
 [node name="KillBoss" type="AudioStreamPlayer" parent="." index="7"]
 
-stream = ExtResource( 17 )
+stream = ExtResource( 18 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "Sounds"
 
 [node name="UILayer" type="CanvasLayer" parent="." index="8"]
 
@@ -247,9 +278,10 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="UI" parent="UILayer" index="0" instance=ExtResource( 18 )]
+[node name="UI" parent="UILayer" index="0" instance=ExtResource( 19 )]
 
-margin_bottom = 102.0
+margin_right = 808.0
+margin_bottom = 610.0
 
 [node name="AllowFireTimer" type="Timer" parent="." index="9"]
 
@@ -258,8 +290,29 @@ wait_time = 0.5
 one_shot = false
 autostart = false
 
+[node name="EndGame" type="AnimationPlayer" parent="." index="10"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/end = SubResource( 4 )
+blend_times = [  ]
+
+[node name="Music" type="AudioStreamPlayer" parent="." index="11"]
+
+stream = ExtResource( 20 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Music"
+
 [connection signal="timeout" from="CrateTimer" to="." method="_on_CrateTimer_timeout"]
 
 [connection signal="timeout" from="AllowFireTimer" to="." method="_on_AllowFireTimer_timeout"]
+
+[connection signal="animation_finished" from="EndGame" to="." method="_on_EndGame_animation_finished"]
 
 

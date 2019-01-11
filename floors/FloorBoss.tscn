@@ -4,46 +4,151 @@
 [ext_resource path="res://objects/BigBarrel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://objects/Boss.tscn" type="PackedScene" id=3]
 
-[node name="FloorBoss" type="Node2D" index="0"]
+[node name="FloorBoss" type="Node2D"]
 
 [node name="Metadata" parent="." index="0" instance=ExtResource( 1 )]
 
 size = 350
 id = "90"
 top_size = 300
-height = 80
+boss_depends = true
+resurrect_scene = null
 
-[node name="BigBarrel" parent="." index="1" instance=ExtResource( 2 )]
+[node name="BigBarrel" parent="." index="1" groups=[
+"destroyable",
+"enemy",
+] instance=ExtResource( 2 )]
 
 position = Vector2( 0, -90 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="BigBarrel2" parent="." index="2" instance=ExtResource( 2 )]
+[node name="BigBarrel2" parent="." index="2" groups=[
+"destroyable",
+"enemy",
+] instance=ExtResource( 2 )]
 
 position = Vector2( 100, 10 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="BigBarrel3" parent="." index="3" instance=ExtResource( 2 )]
+[node name="BigBarrel3" parent="." index="3" groups=[
+"destroyable",
+"enemy",
+] instance=ExtResource( 2 )]
 
 position = Vector2( 0, 100 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="BigBarrel4" parent="." index="4" instance=ExtResource( 2 )]
+[node name="BigBarrel4" parent="." index="4" groups=[
+"destroyable",
+"enemy",
+] instance=ExtResource( 2 )]
 
 position = Vector2( -100, 10 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="BigBarrel5" parent="." index="5" instance=ExtResource( 2 )]
+[node name="BigBarrel5" parent="." index="5" groups=[
+"destroyable",
+"enemy",
+] instance=ExtResource( 2 )]
 
 position = Vector2( -70, -60 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="BigBarrel6" parent="." index="6" instance=ExtResource( 2 )]
+[node name="BigBarrel6" parent="." index="6" groups=[
+"destroyable",
+"enemy",
+] instance=ExtResource( 2 )]
 
 position = Vector2( 70, -70 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="BigBarrel7" parent="." index="7" instance=ExtResource( 2 )]
+[node name="BigBarrel7" parent="." index="7" groups=[
+"destroyable",
+"enemy",
+] instance=ExtResource( 2 )]
 
 position = Vector2( 70, 70 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="BigBarrel8" parent="." index="8" instance=ExtResource( 2 )]
+[node name="BigBarrel8" parent="." index="8" groups=[
+"destroyable",
+"enemy",
+] instance=ExtResource( 2 )]
 
 position = Vector2( -70, 70 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Boss" parent="." index="9" instance=ExtResource( 3 )]
 

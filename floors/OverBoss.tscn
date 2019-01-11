@@ -10,11 +10,12 @@
 size = 300
 id = "66"
 top_size = 300
-height = 80
+boss_depends = true
+resurrect_scene = ExtResource( 2 )
 
 [node name="Zenitka" parent="." index="1" instance=ExtResource( 2 )]
 
-position = Vector2( -100, -90 )
+position = Vector2( -60, -90 )
 
 [node name="Zenitka2" parent="." index="2" instance=ExtResource( 2 )]
 
@@ -26,14 +27,14 @@ position = Vector2( 100, 50 )
 
 [node name="Zenitka4" parent="." index="4" instance=ExtResource( 2 )]
 
-position = Vector2( -50, 150 )
+position = Vector2( -20, 140 )
 
 [node name="Zenitka5" parent="." index="5" instance=ExtResource( 2 )]
 
-position = Vector2( -140, -50 )
+position = Vector2( -130, -30 )
 
 [node name="Zenitka6" parent="." index="6" instance=ExtResource( 2 )]
 
-position = Vector2( -40, 70 )
+position = Vector2( -40, 50 )
 
 

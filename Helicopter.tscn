@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/Helicopter.gd" type="Script" id=1]
 [ext_resource path="res://sprites/helicopter.sprites/helicopter1.tres" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://sounds/machinegun1.wav" type="AudioStream" id=10]
 [ext_resource path="res://sounds/hit1.wav" type="AudioStream" id=11]
 [ext_resource path="res://sounds/rotor.wav" type="AudioStream" id=12]
+[ext_resource path="res://sounds/empty.wav" type="AudioStream" id=13]
 
 [sub_resource type="Animation" id=1]
 
@@ -128,7 +129,10 @@ _sections_unfolded = [ "Collision", "Transform", "collision" ]
 speed = 300
 firing = false
 emiting = false
-bullets = 100
+bullets = 200
+slowmotion = 0.0
+no_slowmo = false
+debug_factor = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
 
@@ -157,7 +161,7 @@ offset = Vector2( 0, 0.256972 )
 
 frames = SubResource( 4 )
 animation = "default"
-frame = 1
+frame = 2
 playing = true
 offset = Vector2( -3, 0.256972 )
 _sections_unfolded = [ "Transform" ]
@@ -185,7 +189,7 @@ volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "Sounds"
 
 [node name="Hit" type="AudioStreamPlayer" parent="." index="4"]
 
@@ -194,7 +198,7 @@ volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "Sounds"
 
 [node name="Rotor" type="AudioStreamPlayer2D" parent="." index="5"]
 
@@ -204,7 +208,7 @@ pitch_scale = 1.0
 autoplay = true
 max_distance = 2000.0
 attenuation = 1.0
-bus = "Master"
+bus = "Sounds"
 area_mask = 1
 
 [node name="Gilzes" type="Particles2D" parent="." index="6"]
@@ -230,5 +234,16 @@ normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Process Material", "Time" ]
+
+[node name="Empty" type="AudioStreamPlayer2D" parent="." index="7"]
+
+stream = ExtResource( 13 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Sounds"
+area_mask = 1
 
 

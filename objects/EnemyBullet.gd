@@ -2,12 +2,14 @@ extends "Sharp.gd"
 
 var damage = 1
 
+
 func get_damage():
 	return damage
 
 func _ready():
 	self.angular_velocity = 0.0
 	self.bounce = 0.0
+	$Particles2D.emitting = global.use_particles
 
 func set_kill_people(val, damage):
 	if val:

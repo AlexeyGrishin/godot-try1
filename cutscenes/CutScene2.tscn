@@ -1,0 +1,358 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://cutscenes/CutScene2.gd" type="Script" id=1]
+[ext_resource path="res://cutscenes/Draw.gd" type="Script" id=2]
+[ext_resource path="res://sprites/friends.sprites/friends0.tres" type="Texture" id=3]
+[ext_resource path="res://sprites/friends.sprites/friends1.tres" type="Texture" id=4]
+[ext_resource path="res://cutscenes/chair.png" type="Texture" id=5]
+[ext_resource path="res://sprites/friends.sprites/friends2.tres" type="Texture" id=6]
+[ext_resource path="res://sprites/friends.sprites/friends9.tres" type="Texture" id=7]
+[ext_resource path="res://sprites/friends.sprites/friends10.tres" type="Texture" id=8]
+[ext_resource path="res://sprites/friends.sprites/friends3.tres" type="Texture" id=9]
+[ext_resource path="res://sprites/friends.sprites/friends11.tres" type="Texture" id=10]
+[ext_resource path="res://sprites/friends.sprites/friends12.tres" type="Texture" id=11]
+[ext_resource path="res://sprites/friends.sprites/friends4.tres" type="Texture" id=12]
+[ext_resource path="res://sprites/friends.sprites/friends5.tres" type="Texture" id=13]
+[ext_resource path="res://sprites/friends.sprites/friends6.tres" type="Texture" id=14]
+[ext_resource path="res://sprites/friends.sprites/friends7.tres" type="Texture" id=15]
+[ext_resource path="res://sprites/friends.sprites/friends8.tres" type="Texture" id=16]
+[ext_resource path="res://bg.png" type="Texture" id=17]
+[ext_resource path="res://sounds/rotor.wav" type="AudioStream" id=18]
+[ext_resource path="res://sounds/window1.wav" type="AudioStream" id=19]
+[ext_resource path="res://sounds/military-3.ogg" type="AudioStream" id=20]
+[ext_resource path="res://cutscenes/ui_saved.png" type="Texture" id=21]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "celebrate",
+"speed": 8.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+
+animations = [ {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "celebrate",
+"speed": 8.0
+} ]
+
+[sub_resource type="SpriteFrames" id=4]
+
+animations = [ {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "walk",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "celebrate",
+"speed": 8.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 90, 10 )
+
+[sub_resource type="Animation" id=6]
+
+length = 10.0
+loop = false
+step = 0.1
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "break_window"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/Rooslan:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5, 3.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -10, 55 ), Vector2( -10, 55 ), Vector2( 20, 55 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Rooslan:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5, 3.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ "default", "walk", "celebrate" ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/Grishin:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 3.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "default", "celebrate" ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CanvasLayer/Grishin:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CanvasLayer/Sazanov:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1, 3.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "default", "celebrate" ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("CanvasLayer/Grishin:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 3.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 64, 55 ), Vector2( 62, 55 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("CanvasLayer/Sazanov:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 3.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 40, 55 ), Vector2( 42, 55 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("CanvasLayer2/ui_saved:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 3.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("CanvasLayer2/ui_saved:self_modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 3.9, 4.2, 4.5, 4.7, 5, 5.4, 5.8, 6.3, 6.9, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 0.69851, 0.16 ), Color( 0.805961, 0.629451, 0.69851, 0.34502 ), Color( 0.333333, 0.629451, 0.69851, 0.57 ), Color( 0.184078, 0.634549, 0.30149, 0.77502 ), Color( 0.517412, 0.350235, 0.30149, 0.95498 ), Color( 0.706471, 0.131961, 0.582902, 1 ), Color( 0.920392, 0.59898, 0.427137, 1 ), Color( 1, 0.862941, 0.723608, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="CutScene2" type="Node2D"]
+
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="0"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 8, 8 )
+transform = Transform2D( 8, 0, 0, 8, 0, 0 )
+
+[node name="Draw" type="Node2D" parent="CanvasLayer" index="0"]
+
+script = ExtResource( 2 )
+
+[node name="Table" type="AnimatedSprite" parent="CanvasLayer" index="1"]
+
+position = Vector2( 52, 55 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 1
+playing = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="chair2" type="Sprite" parent="CanvasLayer" index="2"]
+
+self_modulate = Color( 1, 1, 1, 0.31 )
+position = Vector2( 64, 55 )
+texture = ExtResource( 5 )
+flip_h = true
+_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
+
+[node name="Grishin" type="AnimatedSprite" parent="CanvasLayer" index="3"]
+
+position = Vector2( 62, 55 )
+frames = SubResource( 2 )
+animation = "celebrate"
+playing = true
+flip_h = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="chair" type="Sprite" parent="CanvasLayer" index="4"]
+
+self_modulate = Color( 1, 1, 1, 0.36 )
+position = Vector2( 40, 55 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+
+[node name="Sazanov" type="AnimatedSprite" parent="CanvasLayer" index="5"]
+
+position = Vector2( 42, 55 )
+frames = SubResource( 3 )
+animation = "celebrate"
+playing = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="Rooslan" type="AnimatedSprite" parent="CanvasLayer" index="6"]
+
+position = Vector2( 20, 55 )
+frames = SubResource( 4 )
+animation = "celebrate"
+playing = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="CanvasLayer" index="7"]
+
+position = Vector2( 80, 80 )
+input_pickable = false
+collision_layer = 16
+collision_mask = 8
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/StaticBody2D" index="0"]
+
+shape = SubResource( 5 )
+
+[node name="bg" type="Sprite" parent="." index="1"]
+
+position = Vector2( 140, 850 )
+texture = ExtResource( 17 )
+_sections_unfolded = [ "Region" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+
+root_node = NodePath("..")
+autoplay = "main"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/main = SubResource( 6 )
+blend_times = [  ]
+
+[node name="Rotor" type="AudioStreamPlayer2D" parent="." index="3"]
+
+position = Vector2( -30, 430 )
+stream = ExtResource( 18 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Glass" type="AudioStreamPlayer2D" parent="." index="4"]
+
+position = Vector2( -30, 430 )
+stream = ExtResource( 19 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="." index="5"]
+
+stream = ExtResource( 20 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Master"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." index="6"]
+
+layer = 2
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="ui_saved" type="Sprite" parent="CanvasLayer2" index="0"]
+
+position = Vector2( 430, 160 )
+texture = ExtResource( 21 )
+_sections_unfolded = [ "Visibility" ]
+
+

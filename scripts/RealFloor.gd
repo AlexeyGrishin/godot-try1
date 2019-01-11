@@ -14,6 +14,12 @@ var floor_id = 1
 var clean = false
 
 var debug_scene = false
+export var skip_enemies = false
+
+func respawn():
+	for wrapper in $items_container.get_children():
+		if randf() < 0.4:
+			wrapper.resurrect(floor_scene.get_node("Metadata").resurrect_scene)
 
 func _ready():
 	floor_scene = floor_scene_path.instance()
@@ -31,6 +37,7 @@ func _ready():
 	$colliders/Floor2/CollisionShape2D.shape.extents.x = sqrt(radius*radius - global.ATTACK_HALF_SIZE*global.ATTACK_HALF_SIZE/global.ASPECT/global.ASPECT)
 	
 	global.model.add_floor(floor_id, to_global(Vector2(0,0)).y, radius, top_radius, height)
+	global.model.set_boss_depends(floor_id, floor_scene.get_node("Metadata").boss_depends)
 	
 	$colliders/LeftWindow.position.y = -height/2
 	$colliders/LeftWindow/CollisionShape2D.shape.extents.y = height/2
@@ -38,7 +45,10 @@ func _ready():
 	$colliders/RightWindow/CollisionShape2D.shape.extents.y = height/2
 	
 	global.connect("on_angle_change", self, "_on_angle_change")
-	add_objects()
+	global.connect("on_boss_kill", self, "_on_boss_kill")
+	global.connect("on_boss_resurrect_call", self, "_on_boss_resurrect_call")
+	if not skip_enemies:
+		add_objects()
 	call_deferred("_recalculate_enemies")
 
 	if get_viewport() == get_parent():
@@ -47,6 +57,11 @@ func _ready():
 		global.model.post_init()
 		debug_scene = true
 		
+func _on_boss_kill(boss):
+	call_deferred("_recalculate_enemies")
+	
+func _on_boss_resurrect_call():
+	respawn()
 	
 func add_objects():
 	# ok, i don't know how to do that. have to add whole scene and process contents manually
@@ -67,16 +82,22 @@ func add_objects():
 		wrapper.connect("on_destroy", self, "_on_item_destroy")
 		
 	#$items_container.remove_(source)
-	
+
 func _on_item_destroy():
 	call_deferred("_recalculate_enemies")	
 	
 func _recalculate_enemies():
+	var barrels = []
 	for wrapper in $items_container.get_children():
 		if not (wrapper is wrapper_class) or wrapper.wrapped == null:
 			continue
 		if wrapper.wrapped.is_in_group("enemy"):
-			return
+			if wrapper.wrapped.is_in_group("barrel"):
+				barrels.append(wrapper.wrapped)
+			else:
+				return
+	for b in barrels:
+		b.explode()
 	global.model.on_floor_clear(floor_id)
 	
 func _on_angle_change():

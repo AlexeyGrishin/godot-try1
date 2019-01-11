@@ -11,10 +11,16 @@ var velocity_vector = Vector2(0,0)
 export var speed = 300
 export var firing = false setget set_firing
 export var emiting = false #todo: slow start, slow stop
-export var bullets = 100
+export var bullets = 200
+export var slowmotion = 0.0
+var speedup = 1
+const SLOWMO_DECREASE = 3.2 #per second
 var reload = 0
 var pad = 0
 var camera
+export var no_slowmo = false
+
+export var debug_factor = 1
 
 var hits = [
 	load("res://sounds/hit1.wav"),
@@ -36,15 +42,18 @@ func _ready():
 		$HelicopterBody.animation,
 		$HelicopterBody.frame
 	).get_height() / 2
+	bullets = bullets * debug_factor
 	set_firing(firing)
 	
 	if get_parent() == get_viewport():
 		self.position = Vector2(200, 200)
 	
+	
 func on_bullet_hit(bullet):
 	var damage = 1
 	if bullet.has_method("get_damage"):
 		damage = bullet.get_damage()
+	damage = damage / debug_factor
 	health = max(0, health - damage)
 	$Hit.stream = hits[randi()%hits.size()]
 	$Hit.play()
@@ -58,18 +67,27 @@ func set_firing(val):
 			anim = "rotating"
 		$HelicopterBody/Gun.play(anim)
 		$HelicopterBody/Gun/Fire.visible = firing
-		$Gilzes.emitting = firing
+		$Gilzes.emitting = global.use_particles and firing
 		if firing:
 			if not $Gun.playing:
 				$Gun.play()
 		else:
 			$Gun.stop()
+			
+		if val and bullets <= 0:
+			if not $Empty.playing:
+				$Empty.play()
+		else:
+			$Empty.stop()
 		
 func inc_health(v):
 	health = min(100, health+v)
 	
 func inc_bullets(v):
-	bullets = min(100, bullets+v)
+	bullets = min(200, bullets+v)
+	
+func inc_slomo(v):
+	slowmotion = min(100, slowmotion+v)
 
 func _physics_process(delta):
 	var moveVector = Vector2(0, 0);
@@ -88,7 +106,7 @@ func _physics_process(delta):
 		var new_vel = max(0, velocity_vector.length() - acceleration*delta)
 		velocity_vector = velocity_vector.clamped(new_vel)
 		
-	self.move_and_collide(velocity_vector * delta)
+	self.move_and_collide(velocity_vector * delta * speedup)
 	
 	var camera_offset = camera.position
 	var vprect = get_viewport_rect()
@@ -96,6 +114,15 @@ func _physics_process(delta):
 	self.position.y = clamp(self.position.y, 
 		vprect.position.y + pad, 
 		vprect.position.y + vprect.size.y - pad * 2);
+		
+	if slowmotion >= 0 and not no_slowmo:
+		slowmotion -= SLOWMO_DECREASE * delta
+		Engine.time_scale = 0.5
+		speedup = 1.5
+	else:
+		Engine.time_scale = 1
+		speedup = 1
+	
 		
 	self._fire(delta)
 	

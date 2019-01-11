@@ -9,17 +9,23 @@ const ATTACK_HALF_SIZE = 6.0
 
 signal on_angle_change
 signal on_boss_appear
+signal on_boss_resurrect_call
 signal on_boss_kill
+signal on_all_clear
 
 var model
 
+var use_particles = true
+
 func _ready():
 	model = BuildingModel.new(self)
-	pass
-	
+	connect("on_boss_kill", self, "_on_boss_kill")
+	use_particles = OS.get_name() != "HTML5"
 func init():
 	model = BuildingModel.new(self)
 	
+func _on_boss_kill(boss):
+	model.on_boss_kill()
 
 class WindowModel:
 	var index
@@ -49,6 +55,8 @@ class FloorModel:
 	var right_window_x = 0
 	var height
 	
+	var boss_depends = false
+	
 	var active_soldiers = 0
 	
 	func _init(id, y, radius, top_radius = radius, height = 40):
@@ -62,7 +70,11 @@ class FloorModel:
 
 		
 	func on_clear():
-		self.clear = true
+		if not self.boss_depends:
+			self.clear = true
+		
+	func on_boss_kill():
+		self.boss_depends = false
 		
 	func update(angle):
 		var leftmostx = 999
@@ -119,6 +131,13 @@ class BuildingModel:
 	
 	func _init(emitter):
 		self.emitter = emitter
+		
+	func set_boss_depends(floor_id, val):
+		get_floor(floor_id).boss_depends = val
+		
+	func on_boss_kill():
+		for flr in floors:
+			flr.on_boss_kill()
 		
 	func rotate(delta):
 		angle += delta
@@ -178,7 +197,9 @@ class BuildingModel:
 		
 		if next_floor_after_top_clear_y == 9999:
 			next_floor_after_top_clear_y = bottom_y
-		
+			
+		if all_clear:
+			emitter.emit_signal("on_all_clear")		
 		
 	func on_floor_clear(id):
 		for flr in floors:

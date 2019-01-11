@@ -29,6 +29,10 @@ func post_init():
 
 func post_process(delta):
 	pass
+	
+func resurrect():
+	$Sprite/ResurrectBox.visible = true
+	$Sprite/ResurrectBox.play("default")
 
 	
 func _process(delta):
@@ -100,3 +104,7 @@ func _on_Vision_body_exited(body):
 	do_stop_fire()
 	
 
+
+
+func _on_ResurrectBox_animation_finished():
+	$Sprite/ResurrectBox.visible = false

@@ -18,7 +18,7 @@
 [ext_resource path="res://sprites/bullets.sprites/bullets7.tres" type="Texture" id=16]
 [ext_resource path="res://sprites/bullets.sprites/bullets3.tres" type="Texture" id=17]
 [ext_resource path="res://sprites/bullets.sprites/bullets1.tres" type="Texture" id=18]
-[ext_resource path="res://sprites/bullets.sprites/bullets2.tres" type="Texture" id=19]
+[ext_resource path="res://sprites/zenitka_bullet.png" type="Texture" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 

@@ -9,5 +9,9 @@ _sections_unfolded = [ "Transform" ]
 title = "Floor title"
 size = 400
 id = "1"
+top_size = 400
+height = 80
+boss_depends = false
+resurrect_scene = null
 
 

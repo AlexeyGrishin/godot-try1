@@ -13,6 +13,8 @@ size = 390
 id = "4"
 top_size = 350
 height = 180
+boss_depends = true
+resurrect_scene = ExtResource( 2 )
 
 [node name="MortarGunner" parent="." index="1" instance=ExtResource( 2 )]
 
