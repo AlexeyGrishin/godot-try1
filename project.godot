@@ -25,6 +25,8 @@ AutoResize="*res://scripts/AutoResize.gd"
 [display]
 
 window/size/width=800
+window/size/resizable=false
+window/handheld/emulate_mouse_from_touch=false
 
 [editor_plugins]
 

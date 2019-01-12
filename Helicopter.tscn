@@ -118,7 +118,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Damping", "Gravity", "Hue Variation", "Initial Velocity", "Scale", "Spread" ]
 
-[node name="Helicopter" type="KinematicBody2D" index="0"]
+[node name="Helicopter" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -161,7 +161,6 @@ offset = Vector2( 0, 0.256972 )
 
 frames = SubResource( 4 )
 animation = "default"
-frame = 2
 playing = true
 offset = Vector2( -3, 0.256972 )
 _sections_unfolded = [ "Transform" ]

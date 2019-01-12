@@ -58,7 +58,7 @@ tracks/0/keys = {
 } ]
 }
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Z Index" ]
@@ -140,9 +140,10 @@ _sections_unfolded = [ "Material", "Visibility" ]
 [node name="Helicopter" parent="." index="2" instance=ExtResource( 6 )]
 
 position = Vector2( 90, 520 )
-no_slowmo = false
 
 [node name="Walls" type="Node" parent="." index="3"]
+
+editor/display_folded = true
 
 [node name="Area2D" type="StaticBody2D" parent="Walls" index="0"]
 
@@ -186,6 +187,7 @@ _sections_unfolded = [ "Visibility" ]
 
 [node name="Building" type="Node2D" parent="." index="4"]
 
+editor/display_folded = true
 position = Vector2( 590, 560 )
 
 [node name="Floor" parent="Building" index="0" instance=ExtResource( 7 )]

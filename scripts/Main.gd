@@ -64,13 +64,6 @@ func update_bg():
 		dx -= bg_width
 	$Background/Polars.position.x = dx
 	
-func _unhandled_input(event):
-	if not allow_input:
-		return
-	if event.is_action_pressed("rotate_left"):
-		global.model.rotate(0.06)
-	if event.is_action_pressed("rotate_right"):
-		global.model.rotate(-0.06)
 
 func _process(delta):
 	if state == State.Rotating and allow_input:

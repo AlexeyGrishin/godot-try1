@@ -142,7 +142,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[node name="UI" type="MarginContainer"]
+[node name="UI" type="MarginContainer" index="0"]
 
 pause_mode = 2
 anchor_left = 0.0

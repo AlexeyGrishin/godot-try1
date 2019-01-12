@@ -122,7 +122,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="Highlighter" type="Sprite" parent="Sprite" index="0"]
 
-position = Vector2( 0, -15.2215 )
+position = Vector2( 0, -14.0411 )
 texture = ExtResource( 5 )
 offset = Vector2( 0.5, -8 )
 _sections_unfolded = [ "Offset", "Transform", "Visibility" ]

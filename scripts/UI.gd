@@ -40,6 +40,14 @@ func _unpause():
 	
 func fade():
 	$AnimationPlayer.play("fade")
+	
+#todo: have to do it in UI, 'coz it does not pass mouse events for some reason
+func _gui_input(event):
+	if event.is_action_pressed("rotate_left"):
+		global.model.rotate(0.06)
+	if event.is_action_pressed("rotate_right"):
+		global.model.rotate(-0.06)
+
 
 func _process(delta):
 	if get_tree().paused and allow_unpause and (Input.is_action_just_pressed("ui_select") or Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("fire")):

@@ -12,10 +12,10 @@
 [ext_resource path="res://sprites/friends.sprites/friends16.tres" type="Texture" id=10]
 [ext_resource path="res://cutscenes/white.png" type="Texture" id=11]
 [ext_resource path="res://sprites/friends.sprites/friends4.tres" type="Texture" id=12]
-[ext_resource path="res://sprites/friends.sprites/friends5.tres" type="Texture" id=13]
-[ext_resource path="res://sprites/friends.sprites/friends6.tres" type="Texture" id=14]
-[ext_resource path="res://sprites/friends.sprites/friends7.tres" type="Texture" id=15]
-[ext_resource path="res://sprites/friends.sprites/friends8.tres" type="Texture" id=16]
+[ext_resource path="res://sprites/friends.sprites/friends7.tres" type="Texture" id=13]
+[ext_resource path="res://sprites/friends.sprites/friends8.tres" type="Texture" id=14]
+[ext_resource path="res://sprites/friends.sprites/friends5.tres" type="Texture" id=15]
+[ext_resource path="res://sprites/friends.sprites/friends6.tres" type="Texture" id=16]
 [ext_resource path="res://Helicopter.tscn" type="PackedScene" id=17]
 [ext_resource path="res://cutscenes/dialog1.png" type="Texture" id=18]
 [ext_resource path="res://cutscenes/dialog2.png" type="Texture" id=19]
@@ -61,12 +61,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": true,
-"name": "walk",
+"name": "celebrate",
 "speed": 8.0
 }, {
 "frames": [ ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
-"name": "celebrate",
+"name": "walk",
 "speed": 8.0
 } ]
 
@@ -287,7 +287,7 @@ tracks/15/keys = {
 "values": [ -30.0, -10.0, -30.0 ]
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -378,6 +378,7 @@ _sections_unfolded = [ "Offset", "Transform" ]
 position = Vector2( 111.127, 55.0211 )
 frames = SubResource( 4 )
 animation = "walk"
+frame = 1
 playing = true
 _sections_unfolded = [ "Transform" ]
 
@@ -456,7 +457,6 @@ _sections_unfolded = [ "Material", "Offset", "Transform", "Visibility" ]
 [node name="Helicopter" parent="CanvasLayer2/ViewportContainer/Viewport/CanvasLayer" index="1" instance=ExtResource( 17 )]
 
 position = Vector2( 50, -20 )
-no_slowmo = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 
